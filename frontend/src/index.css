@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+@font-face {
+    font-family: HeatherGreen;
+    src: url('./assets/fonts/Oswald-Regular.ttf');
+}
+
+@font-face {
+    font-family: RaleWay;
+    src: url("./assets/fonts/GlacialIndifference-Regular.otf");
+}
+
+@font-face {
+    font-family: HW;
+    src: url('./assets/fonts/Priestacy.otf');
+}
+
+body{
+    font-family: "RaleWay";
+    min-height: 100vh;
+  
+  /* Create your specific linear gradient */
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 75%, #fa9632 100%);
+  
+  /* Prevent the background from repeating */
+  background-repeat: no-repeat;
+  
+  /* Ensure the background stays fixed or stretches as you scroll */
+  background-attachment: fixed;
+}
+
+.special{
+    font-family: "HeatherGreen";
+}
+
+.name{
+    font-family: "HW";
+    color:#fa9632
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  display: flex;
+  animation: marquee 30s linear infinite;
+}
+
+.pause-marquee {
+  animation-play-state: paused;
+}
