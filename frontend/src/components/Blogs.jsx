@@ -57,10 +57,10 @@ const Blog = () => {
       {/* Hero Section */}
       <section className="bg-black py-16 md:py-24 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] border border-blue-500/20 text-black text-sm font-bold mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] border border-blue-500/20 text-black text-sm font-bold mb-6">
             <Newspaper className="w-4 h-4" />
             Financial Insights
-          </div>
+          </div> */}
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
             Knowledge Hub for <span className="text-[#fa9632]">Wealth Creation</span>
           </h1>

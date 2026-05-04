@@ -9,21 +9,18 @@ const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
     {
-      badge: "Meet the Founder",
       icon: <Award className="w-4 h-4" />,
       title: "Guided by <span class='name'>Shivam Pathak</span>, CFP®",
       content: "For Shivam, financial planning has never been only about money. It is about the people, the lives they are building, and the decisions that shape their future.",
       
     },
     {
-      badge: "The Philosophy",
       icon: <Heart className="w-4 h-4" />,
       title: "We don't begin with your portfolio. We begin with you.",
       content: "Financial advice is easy to find. What is rare is someone who first takes the time to understand your story, your responsibilities, and the future you are trying to build.",
      
     },
     {
-      badge: "The Mission",
       icon: <Anchor className="w-4 h-4" />,
       title: "Clarity where there is confusion.",
       content: "We exist to bring direction where there is uncertainty and thoughtful planning where there is noise. One wrong decision can cost years of effort; we close that gap.",
@@ -47,7 +44,7 @@ const [currentSlide, setCurrentSlide] = useState(0);
             <div className="w-full md:w-1/2 relative">
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl bg-white">
                 <img 
-                  src={shivam} 
+                  src={'#'} 
                   alt="Shivam Pathak - Certified Financial Planner"
                   className="w-full h-[550px] object-contain"
                 />
@@ -90,10 +87,10 @@ const [currentSlide, setCurrentSlide] = useState(0);
             {/* Right: Content Section */}
             <div className="w-full md:w-1/2 min-h-[480px] flex flex-col justify-center">
               <div className="transition-all duration-700 ease-in-out">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] border border-black text-black text-sm font-semibold mb-6">
+                {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] border border-black text-black text-sm font-semibold mb-6">
                   {slides[currentSlide].icon}
-                  {slides[currentSlide].badge}
-                </div>
+                  {slides[curr
+                </div> */}
 
                 <h1 className="text-2xl lg:text-3xl font-extrabold text-slate-900 leading-tight mb-6"
                   dangerouslySetInnerHTML={{ __html: slides[currentSlide].title }}

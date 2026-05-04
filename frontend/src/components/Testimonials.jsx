@@ -33,10 +33,10 @@ const Testimonials = () => {
           
           {/* Header Section */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] text-black border border-black text-sm font-bold mb-4">
+            {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] text-black border border-black text-sm font-bold mb-4">
               <MessageSquare className="w-4 h-4" />
               Client Success Stories
-            </div>
+            </div> */}
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">
               Trusted by Families & Professionals in Mumbai
             </h2>
