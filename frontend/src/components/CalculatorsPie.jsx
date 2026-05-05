@@ -92,7 +92,7 @@ const Calculators = () => {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
           <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Wealth Calculators</h1>
-          <p className="text-slate-600">Referencing the <strong>AssetPlus All-in-One Calculator</strong> for long-term clarity.</p>
+          {/* <p className="text-slate-600">Referencing the <strong>AssetPlus All-in-One Calculator</strong> for long-term clarity.</p> */}
         </div>
 
         {/* Tab Navigation */}
@@ -167,9 +167,9 @@ const Calculators = () => {
                    <p className="text-[10px] text-slate-400 italic text-center mb-4">
                      "Earn with ethics. Grow with discipline. Build with purpose."
                    </p>
-                   <button className="w-full bg-black text-[#fa9632] py-4 rounded-xl font-bold hover:bg-[#fa9632] hover:text-black transition-all flex items-center justify-center gap-2">
+                   {/* <button className="w-full bg-black text-[#fa9632] py-4 rounded-xl font-bold hover:bg-[#fa9632] hover:text-black transition-all flex items-center justify-center gap-2">
                     Consult Shivam Pathak <ChevronRight className="w-4 h-4" />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

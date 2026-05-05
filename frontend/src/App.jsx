@@ -8,7 +8,7 @@ import Testimonials from './components/Testimonials'
 import Blog from './components/Blogs'
 import ContactUs from './components/ContactUs';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
-import Calculators from './components/Calculators'
+import Calculators from './components/CalculatorsPie'
 
 
 function App() {
