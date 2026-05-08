@@ -9,6 +9,8 @@ import Blog from './components/Blogs'
 import ContactUs from './components/ContactUs';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Calculators from './components/CalculatorsPie'
+import AddBlogPost from './components/AddBlogs'
+import Misc from './components/Misc'
 
 
 function App() {
@@ -22,6 +24,8 @@ function App() {
           <Route exact path='/blog' element={<Blog/>}/>
           <Route exact path='/contact-us' element={<ContactUs/>}/> 
           <Route exact path='/calculators' element={<Calculators/>}/>
+          <Route exact path='/add_blogs' element={<AddBlogPost/>}/>
+          <Route exact path='/add_misc' element={<Misc/>}/>
         </Routes>
       </BrowserRouter>
 
