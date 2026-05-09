@@ -66,14 +66,14 @@ const Navbar = () => {
         <div className="md:hidden bg-white border-b border-slate-100 animate-in slide-in-from-top duration-300">
           <div className="px-4 pt-2 pb-6 space-y-2">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
-                href={link.href}
+                to={link.href}
                 className="block px-3 py-4 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-[#fa9632] rounded-lg"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <div className="pt-4">
               <button className="w-full bg-[#fa9632] text-white px-5 py-3 rounded-xl font-semibold">
