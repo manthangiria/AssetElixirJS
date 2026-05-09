@@ -48,7 +48,7 @@ const Blog = () => {
     }
   ];
 
-  const categories = ["All", "Mutual Funds", "Retirement", "Tax Planning", "Psychology of Money"];
+  const categories = ["All", "Getting Started", "Financial Planning", "Investments", "Retirement", "Protection", "Tax", "Lessons from life", "Mistakes to Avoid","Market Insights"];
 
   // Functional logic for filtering and sorting
   const processedBlogs = useMemo(() => {
