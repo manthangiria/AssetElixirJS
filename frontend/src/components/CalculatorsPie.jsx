@@ -133,7 +133,7 @@ const Calculators = () => {
               <h3 className="font-bold uppercase tracking-widest text-[10px] text-slate-400 mb-2">
                 {activeTab === 'home-loan' ? 'Monthly EMI' : activeTab === 'sip-target' ? 'Monthly SIP Required' : 'Maturity Value'}
               </h3>
-              <div className="text-3xl font-black text-[#fa9632]">
+              <div className="text-3xl font-black text-[#fa9632] special">
                 ₹ {activeTab === 'home-loan' ? (result.emi || 0).toLocaleString('en-IN') : 
                    activeTab === 'sip-target' ? (result.sipRequired || 0).toLocaleString('en-IN') : 
                    (result.fv || 0).toLocaleString('en-IN')}
@@ -190,7 +190,7 @@ const InputGroup = ({ label, value, min, max, step, onChange, isPercent, isStepU
             onChange(val === "" ? 0 : Number(val));
           }}
           placeholder="0"
-          className="bg-transparent w-24 text-right outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="special bg-transparent w-24 text-right outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         {isPercent && <span className="ml-1 text-slate-400">%</span>}
         {suffix && <span className="ml-1 text-slate-400">{suffix}</span>}
@@ -198,17 +198,17 @@ const InputGroup = ({ label, value, min, max, step, onChange, isPercent, isStepU
     </div>
     
     <input type="range" min={min} max={max} step={step} value={value || 0} onChange={(e) => onChange(Number(e.target.value))}
-      className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#fa9632]" />
+      className="special w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#fa9632]" />
   </div>
 );
 
 const LegendRow = ({ label, value, color }) => (
   <div className="flex justify-between items-center">
     <div className="flex items-center gap-2">
-      <div className={`w-3 h-3 rounded-full ${color}`}></div>
+      <div className={`w-3 h-3 rounded-full ${color} special`}></div>
       <span className="text-sm font-medium text-slate-600">{label}</span>
     </div>
-    <span className="text-sm font-bold text-slate-900">₹ {(value || 0).toLocaleString('en-IN')}</span>
+    <span className="text-sm font-bold text-slate-900 special">₹ {(value || 0).toLocaleString('en-IN')}</span>
   </div>
 );
 
