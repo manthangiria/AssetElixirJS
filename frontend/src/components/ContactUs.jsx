@@ -39,7 +39,7 @@ const ContactUs = () => {
       <section className="py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Get In Touch</h1>
+            <h1 className="text-4xl font-extrabold text-slate-900 mb-4 special">Get In Touch</h1>
             <p className="text-slate-600 max-w-xl mx-auto">
               Ready to take the next step in your financial journey? Reach out to us for a personalized consultation.
             </p>
@@ -51,7 +51,7 @@ const ContactUs = () => {
               <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-[#fa9632] transition-all">
                 <FaMapPin className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Our Office</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-4 special">Our Office</h3>
               <p className="text-slate-600 leading-relaxed">
                 Kharghar, Navi Mumbai,<br /> 
                 Maharashtra, India
@@ -63,7 +63,7 @@ const ContactUs = () => {
               <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-[#fa9632] transition-all">
                 <FaPhone className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Phone Number</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-4 special">Phone Number</h3>
               <p className="text-slate-600 font-medium text-lg">+91 [Insert Number]</p>
               <p className="text-xs text-slate-400 mt-2">Mon-Fri: 10:00 AM - 6:00 PM</p>
             </div>
@@ -73,7 +73,7 @@ const ContactUs = () => {
               <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-[#fa9632] transition-all">
                 <CiMail className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Email Address</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-4 special">Email Address</h3>
               <p className="text-slate-600 font-medium">contact@assetelixir.com</p>
               <p className="text-slate-600 font-medium">shivam.pathak@cfp.com</p>
             </div>

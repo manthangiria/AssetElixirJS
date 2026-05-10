@@ -80,7 +80,6 @@ const Calculators = () => {
 
   useEffect(() => { calculateFinancials(); }, [inputs, activeTab]);
 
-  // Logic for the Pie Chart Circle
   const investedValue = activeTab === 'home-loan' ? inputs.loanAmount : result.invested;
   const totalValue = activeTab === 'home-loan' ? result.totalPayable : result.fv;
   const gainsValue = Math.max(0, totalValue - investedValue);
@@ -91,11 +90,9 @@ const Calculators = () => {
     <div className="pt-24 pb-20 min-h-screen bg-slate-50">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">Wealth Calculators</h1>
-          {/* <p className="text-slate-600">Referencing the <strong>AssetPlus All-in-One Calculator</strong> for long-term clarity.</p> */}
+          <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight special">Wealth Calculators</h1>
         </div>
 
-        {/* Tab Navigation */}
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {[
             { id: 'lumpsum-sip', label: 'SIP + Lumpsum', icon: <TrendingUp className="w-4 h-4" /> },
@@ -111,13 +108,12 @@ const Calculators = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 items-start">
-          {/* Inputs Section */}
           <div className="lg:col-span-2 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-8">
             {activeTab === 'home-loan' ? (
               <>
                 <InputGroup label="Loan Amount" value={inputs.loanAmount} min={100000} max={100000000} step={100000} onChange={(v) => setInputs({...inputs, loanAmount: v})} />
-                <InputGroup label="Interest Rate (% p.a.)" value={inputs.loanRate} min={5} max={15} step={0.1} onChange={(v) => setInputs({...inputs, loanRate: v})} isPercent />
-                <InputGroup label="Tenure (Years)" value={inputs.loanTenure} min={1} max={30} step={1} onChange={(v) => setInputs({...inputs, loanTenure: v})} suffix="Yrs" />
+                <InputGroup label="Interest Rate" value={inputs.loanRate} min={5} max={15} step={0.1} onChange={(v) => setInputs({...inputs, loanRate: v})} isPercent />
+                <InputGroup label="Tenure" value={inputs.loanTenure} min={1} max={30} step={1} onChange={(v) => setInputs({...inputs, loanTenure: v})} suffix="Yrs" />
               </>
             ) : (
               <>
@@ -125,14 +121,13 @@ const Calculators = () => {
                 <InputGroup label="Lumpsum Investment" value={inputs.lumpsum} min={0} max={10000000} step={10000} onChange={(v) => setInputs({...inputs, lumpsum: v})} />
                 {activeTab !== 'swp' && <InputGroup label="Monthly SIP" value={inputs.sip} min={500} max={500000} step={500} onChange={(v) => setInputs({...inputs, sip: v})} />}
                 {activeTab === 'swp' && <InputGroup label="Monthly Withdrawal" value={inputs.swpAmount} min={500} max={500000} step={500} onChange={(v) => setInputs({...inputs, swpAmount: v})} />}
-                <InputGroup label="Tenure (Years)" value={inputs.tenure} min={1} max={40} step={1} onChange={(v) => setInputs({...inputs, tenure: v})} suffix="Yrs" />
-                <InputGroup label="Expected Returns (% p.a)" value={inputs.rate} min={1} max={25} step={0.5} onChange={(v) => setInputs({...inputs, rate: v})} isPercent />
-                {activeTab !== 'home-loan' && activeTab !== 'swp' && <InputGroup label="Annual Step-up (%)" value={inputs.stepUp} min={0} max={50} step={1} onChange={(v) => setInputs({...inputs, stepUp: v})} isPercent isStepUp />}
+                <InputGroup label="Tenure" value={inputs.tenure} min={1} max={40} step={1} onChange={(v) => setInputs({...inputs, tenure: v})} suffix="Yrs" />
+                <InputGroup label="Expected Returns" value={inputs.rate} min={1} max={25} step={0.5} onChange={(v) => setInputs({...inputs, rate: v})} isPercent />
+                {activeTab !== 'home-loan' && activeTab !== 'swp' && <InputGroup label="Annual Step-up" value={inputs.stepUp} min={0} max={50} step={1} onChange={(v) => setInputs({...inputs, stepUp: v})} isPercent isStepUp />}
               </>
             )}
           </div>
 
-          {/* Results Visual Section */}
           <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden sticky top-24">
             <div className="bg-black p-8 text-center text-white">
               <h3 className="font-bold uppercase tracking-widest text-[10px] text-slate-400 mb-2">
@@ -146,7 +141,6 @@ const Calculators = () => {
             </div>
             
             <div className="p-8">
-              {/* SVG PIE CHART */}
               <div className="flex justify-center mb-8 relative">
                 <svg width="180" height="180" viewBox="0 0 42 42" className="transform -rotate-90">
                   <circle cx="21" cy="21" r="15.915" fill="transparent" stroke="#e2e8f0" strokeWidth="4"></circle>
@@ -167,9 +161,6 @@ const Calculators = () => {
                    <p className="text-[10px] text-slate-400 italic text-center mb-4">
                      "Earn with ethics. Grow with discipline. Build with purpose."
                    </p>
-                   {/* <button className="w-full bg-black text-[#fa9632] py-4 rounded-xl font-bold hover:bg-[#fa9632] hover:text-black transition-all flex items-center justify-center gap-2">
-                    Consult Shivam Pathak <ChevronRight className="w-4 h-4" />
-                  </button> */}
                 </div>
               </div>
             </div>
@@ -182,14 +173,25 @@ const Calculators = () => {
 
 const InputGroup = ({ label, value, min, max, step, onChange, isPercent, isStepUp, suffix }) => (
   <div>
-    <div className="flex justify-between mb-4">
+    <div className="flex justify-between mb-4 items-center">
       <label className="text-sm font-bold text-slate-700 uppercase flex items-center gap-2">
         {label} {isStepUp && <ArrowUpRight className="w-4 h-4 text-[#fa9632]" />}
       </label>
-      <span className="bg-slate-100 px-4 py-1 rounded-lg font-bold text-[#fa9632]">
-        {isPercent ? `${value} %` : suffix ? `${value} ${suffix}` : `₹ ${(value || 0).toLocaleString('en-IN')}`}
-      </span>
+      
+      {/* Typable Input Field */}
+      <div className="flex bg-slate-100 px-3 py-1 rounded-lg font-bold text-[#fa9632] items-center border border-slate-200 focus-within:border-[#fa9632] transition-colors">
+        {!isPercent && !suffix && <span className="mr-1 text-slate-400">₹</span>}
+        <input 
+          type="number"
+          value={value || 0}
+          onChange={(e) => onChange(Number(e.target.value))}
+          className="bg-transparent w-24 text-right outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        />
+        {isPercent && <span className="ml-1 text-slate-400">%</span>}
+        {suffix && <span className="ml-1 text-slate-400">{suffix}</span>}
+      </div>
     </div>
+    
     <input type="range" min={min} max={max} step={step} value={value || 0} onChange={(e) => onChange(Number(e.target.value))}
       className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#fa9632]" />
   </div>

@@ -8,7 +8,7 @@ const Blog = () => {
   const allBlogs = [
     {
       id: 1,
-      title: "Understanding SIP: The Power of Compounding",
+      title: "Why Gold isn't Rising During Way - A Shift Most Investors are Missing?",
       excerpt: "Why staying disciplined with small monthly investments is the key to creating long-term wealth in the Indian market.",
       category: "Mutual Funds",
       date: "2025-10-12", // Changed to ISO for easier sorting logic
@@ -18,7 +18,7 @@ const Blog = () => {
     },
     {
       id: 2,
-      title: "Retirement Planning for NRIs",
+      title: "Financial Planner in Seawoods Navi Mumbai - Investment & Wealth Planning Guide",
       excerpt: "A comprehensive guide on tax-efficient strategies and repatriation rules for NRIs looking to retire in India.",
       category: "Retirement",
       date: "2025-11-05",
@@ -28,7 +28,7 @@ const Blog = () => {
     },
     {
       id: 3,
-      title: "Tax Saving Beyond Section 80C",
+      title: "Financial Planner in Kharghar Navi Mumbai - Investment & Retirement Planning Guide",
       excerpt: "Exploring NPS, Health Insurance, and other legal avenues to optimize your tax liability this financial year.",
       category: "Tax Planning",
       date: "2025-12-01",
@@ -38,13 +38,57 @@ const Blog = () => {
     },
     {
       id: 4,
-      title: "Market Noise vs. Financial Clarity",
+      title: "Financial Planner in CBD Belapur Navi Mumbai - Investment & Retirement Planning Guide",
       excerpt: "How to tune out daily market fluctuations and focus on your personalized goal-based financial roadmap.",
       category: "Psychology of Money",
       date: "2026-01-15",
       displayDate: "Jan 15, 2026",
       readTime: "4 min read",
       image: "https://images.unsplash.com/photo-1611974714652-760056a0ce0f?auto=format&fit=crop&q=80&w=800"
+    },
+    {
+      id:5,
+      title:"Common Investment Mistakes Investors in Navi Mumbai Make (And How to Avoid Them)",
+    },
+    {
+      id:6,
+      title:"Why You need a Certified Financial Planner in Mumbai (Not Just a Mutual Fund Agent) ?"
+    },
+    {
+      id:7,
+      title:"Gold or Silver - Which is Better for Portfolio Stability?"
+    },
+    {
+      id:8,
+      title:"Why Working with a Financial Advisor Brings Clarity, Not Just Returns?"
+    },
+    {
+      id:9,
+      title:"Why you need a Certified Financial Planner in Navi Mumbai?"
+    },
+    {
+      id:10,
+      title:"Best Financial Planner in Mumbai | AssetElixir"
+    },
+    {
+      id:11,
+      title:"Best Financial Planner in Mumbai",
+    },
+    {
+      id:12,
+      title:"The Right Way to Start Your Investment Journey in 2026"
+    },
+    {
+      id:13,
+      title:"Financial Planning Anytime, Anywhere in India"
+    },
+    {
+      id:14,
+      title:"The Day Rohan Realized his SIP was his Best Friend"
+    },
+    {
+      id:15,
+      title:"SIP vs Lump Sum - Which Investment Strategy is Right for you?"
     }
   ];
 
@@ -71,7 +115,7 @@ const Blog = () => {
   return (
     <div className="pt-20 min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="bg-black py-16 md:py-24 text-white">
+      {/* <section className="bg-black py-16 md:py-24 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
             Knowledge Hub for <span className="text-[#fa9632]">Wealth Creation</span>
@@ -80,7 +124,7 @@ const Blog = () => {
             Expert insights on mutual funds, tax planning, and market trends to help you navigate your financial journey with clarity.
           </p>
         </div>
-      </section>
+      </section> */}
 
       {/* Blog Grid & Controls */}
       <section className="py-12">
@@ -160,7 +204,7 @@ const Blog = () => {
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#fa9632] transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#fa9632] transition-colors special">
                     {blog.title}
                   </h3>
                   

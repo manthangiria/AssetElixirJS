@@ -1,12 +1,12 @@
 @import 'tailwindcss';
 @font-face {
     font-family: HeatherGreen;
-    src: url('./assets/fonts/Oswald-Regular.ttf');
+    src: url('./assets/fonts/EBGaramond-VariableFont_wght.ttf');
 }
 
 @font-face {
     font-family: RaleWay;
-    src: url("./assets/fonts/GlacialIndifference-Regular.otf");
+    src: url("./assets/fonts/DMSans-VariableFont_opsz\,wght.ttf");
 }
 
 @font-face {
