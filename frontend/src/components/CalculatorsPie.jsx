@@ -178,13 +178,18 @@ const InputGroup = ({ label, value, min, max, step, onChange, isPercent, isStepU
         {label} {isStepUp && <ArrowUpRight className="w-4 h-4 text-[#fa9632]" />}
       </label>
       
-      {/* Typable Input Field */}
       <div className="flex bg-slate-100 px-3 py-1 rounded-lg font-bold text-[#fa9632] items-center border border-slate-200 focus-within:border-[#fa9632] transition-colors">
         {!isPercent && !suffix && <span className="mr-1 text-slate-400">₹</span>}
         <input 
           type="number"
-          value={value || 0}
-          onChange={(e) => onChange(Number(e.target.value))}
+          // BUG FIX: If value is 0, display an empty string so the placeholder appears
+          value={value === 0 ? "" : value} 
+          onChange={(e) => {
+            const val = e.target.value;
+            // If empty, set state to 0 for calculations, otherwise parse number
+            onChange(val === "" ? 0 : Number(val));
+          }}
+          placeholder="0"
           className="bg-transparent w-24 text-right outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         {isPercent && <span className="ml-1 text-slate-400">%</span>}
