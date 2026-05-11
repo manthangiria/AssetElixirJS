@@ -5,6 +5,9 @@ import mongoose from 'mongoose'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+import bRts from './routes/blogRoutes.js';
+import uRts from './routes/userRoutes.js'
+
 const app = express()
 app.use(express.json());
 app.use(cors());
