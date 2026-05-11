@@ -12,6 +12,8 @@ const app = express()
 app.use(express.json());
 app.use(cors());
 
+app.use('/api/users', uRts);
+app.use('/api/blogs',bRts);
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname  = path.dirname(__filename)
@@ -24,5 +26,5 @@ if (process.env.NODE_ENV==='production'){
 }
 
 mongoose.connect(process.env.MONGOURL).then(()=>{
-    app.listen(process.env.PORT || 4000, () => console.log("Connected to database and listening to request at port ", process.env.PORT))
+    app.listen(process.env.PORT || 4000, () => console.log("Connected to database and listening to request at port", process.env.PORT))
 }).catch(err=>console.log(err))
