@@ -52,6 +52,7 @@ const AddBlogPost = () => {
         <div className="mb-10">
           <h1 className="text-3xl font-black text-slate-900 tracking-tight">Blog Editor</h1>
           <p className="text-slate-500 mt-2">Manage your financial insights and categories.</p>
+          <p className='text-m'>Start text with '#' to add sub heading in content</p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-10">

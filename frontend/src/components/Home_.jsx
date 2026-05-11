@@ -85,8 +85,8 @@ const [currentSlide, setCurrentSlide] = useState(0);
               <div className="absolute -bottom-10 -left-10 w-72 h-72 bg-[#fa9632] rounded-full -z-0 opacity-10 blur-3xl"></div>
             </div>
 
-            <Link to='/add_blogs'>Add Blogs</Link>
-            <Link to='/add_misc'>Add Misc</Link>
+            <Link to='/add_blogs' className='border bg-yellow-500'>Add Blogs</Link>
+            <Link to='/add_misc' className='border bg-yellow-500'>Add Misc</Link>
 
             {/* Right: Content Section */}
             <div className="w-full md:w-1/2 min-h-[480px] flex flex-col justify-center">
