@@ -5,6 +5,11 @@
 }
 
 @font-face {
+  font-family: HeatherItalic;
+  src: url('./assets/fonts/EBGaramond-Italic-VariableFont_wght.ttf');
+}
+
+@font-face {
     font-family: RaleWay;
     src: url("./assets/fonts/DMSans-VariableFont_opsz\,wght.ttf");
 }
@@ -30,6 +35,10 @@ body{
 
 .special{
     font-family: "HeatherGreen";
+}
+
+.special_{
+  font-family: "HeatherItalic";
 }
 
 .name{

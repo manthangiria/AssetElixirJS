@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import Navbar from './components/Navbar'
-import Home from './components/Home_'
+import Home from './components/Home'
 import Testimonials from './components/Testimonials'
 import Blog from './components/Blogs'
 import ContactUs from './components/ContactUs';
