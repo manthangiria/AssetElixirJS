@@ -11,6 +11,7 @@ import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Calculators from './components/CalculatorsPie'
 import AddBlogPost from './components/AddBlogs'
 import Misc from './components/Misc'
+import AboutUs from './components/AboutUs'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route exact path='/calculators' element={<Calculators/>}/>
           <Route exact path='/add_blogs' element={<AddBlogPost/>}/>
           <Route exact path='/add_misc' element={<Misc/>}/>
+          <Route exact path='/about_us' element={<AboutUs/>}/>
         </Routes>
       </BrowserRouter>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronRight, PieChart } from 'lucide-react';
-import myLogo from '../assets/Logo_Asset_Elixir.png';
+import myLogo from '../assets/AssetElixir.png';
 import {Link} from "react-router-dom";
 
 const Navbar = () => {
@@ -11,7 +11,8 @@ const Navbar = () => {
     { name: 'Testimonials', href: '/testimonials' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact Us', href: '/contact-us' },
-    { name: "Calculators", href: '/calculators' }
+    { name: "Calculators", href: '/calculators' },
+    { name: "About Us", href:'/about_us' }
   ];
 
   return (
@@ -25,11 +26,11 @@ const Navbar = () => {
               {/* <PieChart className="text-white w-6 h-6" /> */}
               <img className='h-20' src={myLogo}/>
             </div>
-            <span className="text-2xl font-bold tracking-tight text-slate-900">
+            {/* <span className="text-2xl font-bold tracking-tight text-slate-900">
               <span className='special'>Asset<span className="text-[#fa9632]">Elixir</span></span>
               <br/>
               <span className='text-sm'>Financial Solutions</span>
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop Navigation */}

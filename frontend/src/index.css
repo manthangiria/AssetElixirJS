@@ -43,7 +43,7 @@ body{
 
 .name{
     font-family: "HW";
-    color:#fa9632
+    /* color:#fa9632 */
 }
 
 @keyframes marquee {

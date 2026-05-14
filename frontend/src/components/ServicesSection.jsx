@@ -12,66 +12,68 @@ import {
 const ServicesSection = () => {
   const services = [
     {
-      title: "Wealth Creation",
+      title: "Financial Planning",
       isNew: true,
       icon: <Calculator className="w-6 h-6 text-[#fa9632]" />,
       points: [
-        "Custom Portfolio Construction",
-        "Compounding Growth Strategies",
-        "Asset Allocation"
+        "Comprehensive Financial Planning",
+        "Goal-Based Planning",
+        "Cash Flow Planning",
+        "Family Financial Planning"
       ],
-      color: "bg-[#fa9632]" // Lighter Blue
-    },
-    {
-      title: "Tax Planning & Reporting",
-      icon: <Calculator className="w-6 h-6 text-[#fa9632]" />,
-      points: [
-        "Section-Wise Optimization",
-        "Tax-Efficient Investing",
-        "Consolidated Reporting",
-      ],
-      color: "bg-[#fa9632]" // Dark Teal
-    },
-    {
-      title: "Retirement Planning",
-      icon: <TrendingUp className="w-6 h-6 text-[#fa9632]" />,
-      points: [
-        "Corpus Requirement Analysis",
-        "Pension & Cash Flow Strategy",
-        "NRI Retirement Solutions"
-      ],
-      color: "bg-[#fa9632]"
-    },
-    {
-      title: "Plan Implementation",
-      icon: <PieChart className="w-6 h-6 text-[#fa9632]" />,
-      points: [
-        "Hassle-Free Execution",
-        "Goal-Linked Investing",
-        "Disciplined Execution"
-      ],
-      color: "bg-[#fa9632]"
-    },
-    {
-      title: "Smart Money Management",
-      icon: <Gem className="w-6 h-6 text-[#fa9632]" />,
-      points: [
-        "Emergency Fund Setup",
-        "Cash Flow Optimization",
-        "Debt Management"
-      ],
-      color: "bg-[#fa9632]"
+      // color: "bg-[#fa9632]" // Lighter Blue
     },
     {
       title: "Portfolio Review",
+      icon: <Calculator className="w-6 h-6 text-[#fa9632]" />,
+      points: [
+        "Investment Review",
+        "Mutual Fund Planning",
+        "Asset Allocation",
+        "Wealth Creation Strategy"
+      ],
+      // color: "bg-[#fa9632]" // Dark Teal
+    },
+    {
+      title: "Protection Planning",
+      icon: <TrendingUp className="w-6 h-6 text-[#fa9632]" />,
+      points: [
+        "Life Insurance Planning",
+        "Health Insurance Guidance",
+        "Risk Management Planning"
+      ],
+      // color: "bg-[#fa9632]"
+    },
+    {
+      title: "Retirement Planning",
+      icon: <PieChart className="w-6 h-6 text-[#fa9632]" />,
+      points: [
+        "Retirement Corpus Planning",
+        "Retirement Income Strategy",
+        "Early Retirement Planning"
+      ],
+      // color: "bg-[#fa9632]"
+    },
+    {
+      title: "Tax Planning",
       icon: <Gem className="w-6 h-6 text-[#fa9632]" />,
       points: [
-        "Quarterly Health Checks",
-        "Rebalancing",
-        "Cleaning Underperformers"
+        "Tax Planning",
+        "Tax Saving Investments",
       ],
-      color: "bg-[#fa9632]"
-    }
+      // color: "bg-[#fa9632]"
+    },
+    {
+      title: "Life Stage Planning",
+      icon: <Gem className="w-6 h-6 text-[#fa9632]" />,
+      points: [
+        "Young Earners Planning",
+        "Family Stage Planning",
+        "Pre-Retirement Planning"
+      ],
+      // color: "bg-[#fa9632]"
+    },
+    
   ];
 
   return (
@@ -81,10 +83,10 @@ const ServicesSection = () => {
           
           {/* Left Side: Header Content */}
           <div className="lg:w-1/3 flex flex-col justify-center">
-            <h2 className="text-3xl font-extrabold text-slate-900 border-b-4 border-[#fa9632] w-fit mb-6">
+            <h2 className="text-5xl special text-slate-900 border-b-4 border-[#fa9632] w-fit mb-6">
               Services
             </h2>
-            <p className="text-2xl font-bold text-slate-800 leading-tight">
+            <p className="text-xl text-slate-600 leading-tight">
               Helping you with all your life goals, and everything your money touches.
             </p>
           </div>
@@ -95,7 +97,7 @@ const ServicesSection = () => {
               {services.map((service, index) => (
                 <div 
                   key={index}
-                  className={`${service.color} min-w-[300px] md:min-w-[350px] p-8 rounded-[2rem] snap-start flex flex-col justify-between h-[500px] transition-transform duration-300 hover:scale-[1.02]`}
+                  className={`${service.color} bg-[#f8f8f8] border border-[#e0e0e0] hover:border-[#fa9632] min-w-[300px] md:min-w-[350px] p-8 rounded-[2rem] snap-start flex flex-col justify-between h-[500px] `}
                 >
                   <div>
                     {service.isNew && (
@@ -106,12 +108,12 @@ const ServicesSection = () => {
                     
                     <div className="flex items-center gap-2 mb-6">
                       {service.icon}
-                      <h3 className="text-2xl font-bold">{service.title}</h3>
+                      <h3 className="text-2xl font-bold special">{service.title}</h3>
                     </div>
 
                     <ul className="space-y-4">
                       {service.points.map((point, i) => (
-                        <li key={i} className="flex items-start gap-3 text-sm font-medium opacity-90">
+                        <li key={i} className="flex items-start gap-3 text-sm text-slate-600 font-medium opacity-90">
                           <span className="text-[#fa9632] mt-1">◆</span>
                           {point}
                         </li>
@@ -121,11 +123,11 @@ const ServicesSection = () => {
 
                   <div className="mt-8">
                     {service.isNew ? (
-                      <button className="bg-white text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-slate-100 transition-colors">
+                      <button className="cursor-pointer bg-white text-black px-6 py-2 rounded-full text-sm font-bold hover:bg-[#fa9632] transition-colors">
                         Learn more
                       </button>
                     ) : (
-                      <button className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-900 hover:bg-[#fa9632] transition-colors group">
+                      <button className="cursor-pointer w-12 h-12 rounded-full bg-white flex items-center justify-center text-slate-900 hover:bg-[#fa9632] transition-colors group">
                         <ArrowRight className="w-5 h-5 group-hover:text-black" />
                       </button>
                     )}

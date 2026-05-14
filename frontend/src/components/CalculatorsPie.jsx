@@ -6,45 +6,48 @@ import {
 
 const Calculators = () => {
   const [activeTab, setActiveTab] = useState('lumpsum-sip');
+  const [swpMode, setSwpMode] = useState('balance'); 
+  const [goalMode, setGoalMode] = useState('sip'); 
   
   const [inputs, setInputs] = useState({
-    lumpsum: 100000,
-    sip: 10000,
-    tenure: 10,
+    lumpsum: 1600000,
+    sip: 40000,
+    tenure: 5,
     rate: 12,
-    target: 5000000,
-    stepUp: 10,
+    target: 10000000,
+    stepUp: 0,
     swpAmount: 20000,
+    swpTargetBalance: 0,
     loanAmount: 5000000,
     loanRate: 8.5,
     loanTenure: 20
   });
 
   const [result, setResult] = useState({ 
-    fv: 0, invested: 0, emi: 0, totalPayable: 0, sipRequired: 0 
+    fv: 0, invested: 0, emi: 0, totalPayable: 0, sipRequired: 0, lumpsumRequired: 0, swpRequired: 0 
   });
 
   const calculateFinancials = () => {
-    const r = (inputs.rate || 0) / 100 / 12;
-    const n = (inputs.tenure || 0) * 12;
+    const annualRate = (inputs.rate || 0) / 100;
+    const monthlyRate = annualRate / 12;
+    const years = (inputs.tenure || 0);
+    const months = years * 12;
     const annualStepUp = (inputs.stepUp || 0) / 100;
     
-    let totalFV = 0;
-    let totalInvested = 0;
-
     switch (activeTab) {
       case 'lumpsum-sip':
-        totalFV = (inputs.lumpsum || 0) * Math.pow(1 + ((inputs.rate || 0) / 100), (inputs.tenure || 0));
-        totalInvested = (inputs.lumpsum || 0);
+        const lumpsumFV = (inputs.lumpsum || 0) * Math.pow(1 + annualRate, years);
+        let sipFV = 0;
+        let totalSIPInvested = 0;
         let currentSIP = (inputs.sip || 0);
-        for (let y = 1; y <= (inputs.tenure || 0); y++) {
+        for (let y = 1; y <= years; y++) {
           for (let m = 1; m <= 12; m++) {
-            totalInvested += currentSIP;
-            totalFV = (totalFV + currentSIP) * (1 + r);
+            totalSIPInvested += currentSIP;
+            sipFV = (sipFV + currentSIP) * (1 + monthlyRate);
           }
           currentSIP *= (1 + annualStepUp);
         }
-        setResult(prev => ({ ...prev, fv: Math.round(totalFV), invested: Math.round(totalInvested) }));
+        setResult(prev => ({ ...prev, fv: Math.round(lumpsumFV + sipFV), invested: Math.round((inputs.lumpsum || 0) + totalSIPInvested) }));
         break;
 
       case 'home-loan':
@@ -55,30 +58,51 @@ const Calculators = () => {
         break;
 
       case 'swp':
-        let balance = (inputs.lumpsum || 0);
-        for (let i = 0; i < n; i++) {
-          balance = (balance - (inputs.swpAmount || 0)) * (1 + r);
-          if (balance < 0) { balance = 0; break; }
+        if (swpMode === 'balance') {
+          let swpBalance = (inputs.lumpsum || 0);
+          for (let i = 0; i < months; i++) {
+            swpBalance = (swpBalance - (inputs.swpAmount || 0)) * (1 + monthlyRate);
+            if (swpBalance < 0) { swpBalance = 0; break; }
+          }
+          setResult(prev => ({ ...prev, fv: Math.round(swpBalance), invested: (inputs.lumpsum || 0) }));
+        } else {
+          const P = inputs.lumpsum || 0;
+          const targetB = inputs.swpTargetBalance || 0;
+          const compoundFactor = Math.pow(1 + monthlyRate, months);
+          const annuityFactor = ((compoundFactor - 1) / monthlyRate) * (1 + monthlyRate);
+          const requiredWithdrawal = (P * compoundFactor - targetB) / annuityFactor;
+          setResult(prev => ({ ...prev, swpRequired: Math.round(Math.max(0, requiredWithdrawal)), fv: targetB, invested: P }));
         }
-        setResult(prev => ({ ...prev, fv: Math.round(balance), invested: (inputs.lumpsum || 0) }));
         break;
 
       case 'sip-target':
-        const fvOfLumpsum = (inputs.lumpsum || 0) * Math.pow(1 + ((inputs.rate || 0) / 100), (inputs.tenure || 0));
-        const gap = (inputs.target || 0) - fvOfLumpsum;
-        let unitFactor = 0; let unitSIP = 1;
-        for (let y = 1; y <= (inputs.tenure || 0); y++) {
-          for (let m = 1; m <= 12; m++) { unitFactor = (unitFactor + unitSIP) * (1 + r); }
-          unitSIP *= (1 + annualStepUp);
+        if (goalMode === 'sip') {
+          // Calculate SIP Required (Starting from 0 Lumpsum as field is removed)
+          const gap = (inputs.target || 0); 
+          let growthFactor = 0;
+          let unitSIP = 1;
+          let totalUnitsInvested = 0;
+          for (let y = 1; y <= years; y++) {
+            for (let m = 1; m <= 12; m++) {
+              growthFactor = (growthFactor + unitSIP) * (1 + monthlyRate);
+              totalUnitsInvested += unitSIP;
+            }
+            unitSIP *= (1 + annualStepUp);
+          }
+          const reqSIP = gap > 0 ? gap / growthFactor : 0;
+          setResult(prev => ({ ...prev, sipRequired: Math.round(reqSIP), fv: (inputs.target || 0), invested: Math.round(reqSIP * totalUnitsInvested) }));
+        } else {
+          // Calculate Lumpsum Required (Assuming 0 SIP as field is removed)
+          const gap = (inputs.target || 0);
+          const reqLumpsum = gap > 0 ? gap / Math.pow(1 + annualRate, years) : 0;
+          setResult(prev => ({ ...prev, lumpsumRequired: Math.round(reqLumpsum), fv: (inputs.target || 0), invested: Math.round(reqLumpsum) }));
         }
-        const reqSIP = gap > 0 ? gap / unitFactor : 0;
-        setResult(prev => ({ ...prev, sipRequired: Math.round(reqSIP), fv: (inputs.target || 0), invested: Math.round(reqSIP * n) }));
         break;
       default: break;
     }
   };
 
-  useEffect(() => { calculateFinancials(); }, [inputs, activeTab]);
+  useEffect(() => { calculateFinancials(); }, [inputs, activeTab, swpMode, goalMode]);
 
   const investedValue = activeTab === 'home-loan' ? inputs.loanAmount : result.invested;
   const totalValue = activeTab === 'home-loan' ? result.totalPayable : result.fv;
@@ -109,6 +133,21 @@ const Calculators = () => {
 
         <div className="grid lg:grid-cols-3 gap-8 items-start">
           <div className="lg:col-span-2 bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-8">
+            
+            {/* Sub-Toggles */}
+            {activeTab === 'swp' && (
+              <div className="flex bg-slate-100 p-1 rounded-xl w-fit">
+                <button onClick={() => setSwpMode('balance')} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${swpMode === 'balance' ? 'bg-white text-black shadow-sm' : 'text-slate-400'}`}>Calculate Balance</button>
+                <button onClick={() => setSwpMode('withdrawal')} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${swpMode === 'withdrawal' ? 'bg-white text-black shadow-sm' : 'text-slate-400'}`}>Calculate Withdrawal</button>
+              </div>
+            )}
+            {activeTab === 'sip-target' && (
+              <div className="flex bg-slate-100 p-1 rounded-xl w-fit">
+                <button onClick={() => setGoalMode('sip')} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${goalMode === 'sip' ? 'bg-white text-black shadow-sm' : 'text-slate-400'}`}>Calculate SIP</button>
+                <button onClick={() => setGoalMode('lumpsum')} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${goalMode === 'lumpsum' ? 'bg-white text-black shadow-sm' : 'text-slate-400'}`}>Calculate Lumpsum</button>
+              </div>
+            )}
+
             {activeTab === 'home-loan' ? (
               <>
                 <InputGroup label="Loan Amount" value={inputs.loanAmount} min={100000} max={100000000} step={100000} onChange={(v) => setInputs({...inputs, loanAmount: v})} />
@@ -117,13 +156,34 @@ const Calculators = () => {
               </>
             ) : (
               <>
+                {/* Always show Target for Goal Planner */}
                 {activeTab === 'sip-target' && <InputGroup label="Target Future Value" value={inputs.target} min={100000} max={100000000} step={100000} onChange={(v) => setInputs({...inputs, target: v})} />}
-                <InputGroup label="Lumpsum Investment" value={inputs.lumpsum} min={0} max={10000000} step={10000} onChange={(v) => setInputs({...inputs, lumpsum: v})} />
-                {activeTab !== 'swp' && <InputGroup label="Monthly SIP" value={inputs.sip} min={500} max={500000} step={500} onChange={(v) => setInputs({...inputs, sip: v})} />}
-                {activeTab === 'swp' && <InputGroup label="Monthly Withdrawal" value={inputs.swpAmount} min={500} max={500000} step={500} onChange={(v) => setInputs({...inputs, swpAmount: v})} />}
+                
+                {/* Show Lumpsum only in standard and SWP modes */}
+                {(activeTab === 'lumpsum-sip' || activeTab === 'swp') && (
+                  <InputGroup label="Lumpsum Investment" value={inputs.lumpsum} min={0} max={10000000} step={10000} onChange={(v) => setInputs({...inputs, lumpsum: v})} />
+                )}
+
+                {/* Show SIP only in standard mode */}
+                {activeTab === 'lumpsum-sip' && (
+                  <InputGroup label="Monthly SIP" value={inputs.sip} min={0} max={500000} step={500} onChange={(v) => setInputs({...inputs, sip: v})} />
+                )}
+
+                {/* SWP Specifics */}
+                {activeTab === 'swp' && swpMode === 'balance' && (
+                  <InputGroup label="Monthly Withdrawal" value={inputs.swpAmount} min={500} max={500000} step={500} onChange={(v) => setInputs({...inputs, swpAmount: v})} />
+                )}
+                {activeTab === 'swp' && swpMode === 'withdrawal' && (
+                  <InputGroup label="Desired Balance at End" value={inputs.swpTargetBalance} min={0} max={10000000} step={10000} onChange={(v) => setInputs({...inputs, swpTargetBalance: v})} />
+                )}
+
                 <InputGroup label="Tenure" value={inputs.tenure} min={1} max={40} step={1} onChange={(v) => setInputs({...inputs, tenure: v})} suffix="Yrs" />
                 <InputGroup label="Expected Returns" value={inputs.rate} min={1} max={25} step={0.5} onChange={(v) => setInputs({...inputs, rate: v})} isPercent />
-                {activeTab !== 'home-loan' && activeTab !== 'swp' && <InputGroup label="Annual Step-up" value={inputs.stepUp} min={0} max={50} step={1} onChange={(v) => setInputs({...inputs, stepUp: v})} isPercent isStepUp />}
+                
+                {/* Step-up only for SIP-based calculations */}
+                {(activeTab === 'lumpsum-sip' || (activeTab === 'sip-target' && goalMode === 'sip')) && (
+                  <InputGroup label="Annual Step-up" value={inputs.stepUp} min={0} max={50} step={1} onChange={(v) => setInputs({...inputs, stepUp: v})} isPercent isStepUp />
+                )}
               </>
             )}
           </div>
@@ -131,11 +191,16 @@ const Calculators = () => {
           <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden sticky top-24">
             <div className="bg-black p-8 text-center text-white">
               <h3 className="font-bold uppercase tracking-widest text-[10px] text-slate-400 mb-2">
-                {activeTab === 'home-loan' ? 'Monthly EMI' : activeTab === 'sip-target' ? 'Monthly SIP Required' : 'Maturity Value'}
+                {activeTab === 'home-loan' ? 'Monthly EMI' : 
+                 (activeTab === 'sip-target' && goalMode === 'sip') ? 'Monthly SIP Required' : 
+                 (activeTab === 'sip-target' && goalMode === 'lumpsum') ? 'Lumpsum Required' :
+                 (activeTab === 'swp' && swpMode === 'withdrawal') ? 'Monthly Withdrawal Possible' : 'Maturity Value'}
               </h3>
               <div className="text-3xl font-black text-[#fa9632] special">
                 ₹ {activeTab === 'home-loan' ? (result.emi || 0).toLocaleString('en-IN') : 
-                   activeTab === 'sip-target' ? (result.sipRequired || 0).toLocaleString('en-IN') : 
+                   (activeTab === 'sip-target' && goalMode === 'sip') ? (result.sipRequired || 0).toLocaleString('en-IN') : 
+                   (activeTab === 'sip-target' && goalMode === 'lumpsum') ? (result.lumpsumRequired || 0).toLocaleString('en-IN') :
+                   (activeTab === 'swp' && swpMode === 'withdrawal') ? (result.swpRequired || 0).toLocaleString('en-IN') :
                    (result.fv || 0).toLocaleString('en-IN')}
               </div>
             </div>
@@ -148,7 +213,9 @@ const Calculators = () => {
                     strokeDasharray={strokeDasharray} strokeDashoffset="0"></circle>
                 </svg>
                 <div className="absolute inset-0 flex items-center justify-center flex-col">
-                   <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Gains</span>
+                   <span className="text-xs font-bold text-slate-400 uppercase tracking-tighter">
+                    {(activeTab === 'swp' && swpMode === 'withdrawal') || (activeTab === 'sip-target' && goalMode !== 'lumpsum') ? 'Left' : 'Gains'}
+                   </span>
                    <span className="text-lg font-black text-slate-900">{Math.round(percentage)}%</span>
                 </div>
               </div>
@@ -177,16 +244,13 @@ const InputGroup = ({ label, value, min, max, step, onChange, isPercent, isStepU
       <label className="text-sm font-bold text-slate-700 uppercase flex items-center gap-2">
         {label} {isStepUp && <ArrowUpRight className="w-4 h-4 text-[#fa9632]" />}
       </label>
-      
       <div className="flex bg-slate-100 px-3 py-1 rounded-lg font-bold text-[#fa9632] items-center border border-slate-200 focus-within:border-[#fa9632] transition-colors">
         {!isPercent && !suffix && <span className="mr-1 text-slate-400">₹</span>}
         <input 
           type="number"
-          // BUG FIX: If value is 0, display an empty string so the placeholder appears
           value={value === 0 ? "" : value} 
           onChange={(e) => {
             const val = e.target.value;
-            // If empty, set state to 0 for calculations, otherwise parse number
             onChange(val === "" ? 0 : Number(val));
           }}
           placeholder="0"
@@ -196,7 +260,6 @@ const InputGroup = ({ label, value, min, max, step, onChange, isPercent, isStepU
         {suffix && <span className="ml-1 text-slate-400">{suffix}</span>}
       </div>
     </div>
-    
     <input type="range" min={min} max={max} step={step} value={value || 0} onChange={(e) => onChange(Number(e.target.value))}
       className="special w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-[#fa9632]" />
   </div>
