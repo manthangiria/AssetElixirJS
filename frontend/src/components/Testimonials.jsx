@@ -132,9 +132,9 @@ const Testimonials = () => {
                       <CheckCircle2 className="w-4 h-4 text-[#fa9632]" />
                     </h4>
                     <p className="text-xs text-slate-500 font-medium">{review.role}</p>
-                    <p className="text-[10px] uppercase tracking-widest mt-1 font-bold">
+                    {/* <p className="text-[10px] uppercase tracking-widest mt-1 font-bold">
                       {review.location}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               </div>

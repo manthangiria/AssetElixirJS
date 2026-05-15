@@ -1,0 +1,27 @@
+import { useState } from "react";
+import { useAuthContext } from "./useAuthContext";
+
+export const useSignup = () => {
+    const [error, setError] = useState(null);
+    const [isloading, setIsloading] = useState(false);
+    const {dispatch} = useAuthContext();
+    const signup = async (name, password) => {
+        setIsloading(true);
+        setError(null);
+        const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/users/signup`,{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({name, password})
+        })
+        const json = await resp.json();
+        if (!resp.ok){
+            setIsloading(false);
+            setError(json.error);
+        }
+        if (resp.ok){
+            localStorage.setItem('asstUsr',JSON.stringify(josn));
+            dispatch({type:"LOGIN",payload:json});
+            setIsloading(false);
+        }
+    }
+}
