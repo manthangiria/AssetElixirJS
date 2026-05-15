@@ -18,8 +18,14 @@ const loginUser = async (req,res) => {
 
 const signupUser = async (req,res) => {
     const {name, password} = req.body;
+    //console.log(name, password);
+    //console.log(process.env.SEC)
+    //await User.deleteMany({})
+    //const x = await User.find()
+    //console.log(x)
+    //return;
     try {
-        const user  = await User.signup(name,email,password);
+        const user  = await User.signup(name,password);
         const token = createToken(user._id);
         return res.status(200).json({...user, token});
     } catch (error){

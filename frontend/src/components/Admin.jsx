@@ -8,16 +8,18 @@ import {
   EyeOff 
 } from 'lucide-react';
 import { useLogin } from '../hooks/useLogin';
+import { useSignup } from '../hooks/useSignup';
 
 const Admin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const {login, error, isloading} = useLogin();
+  //const {login, error, isloading} = useLogin();
+  const {signup, error, isloading} = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(username, password);
+    await signup(username, password);
   }
 
   const [showPassword, setShowPassword] = useState(false);

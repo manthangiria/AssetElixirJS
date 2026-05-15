@@ -6,24 +6,20 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
     name     : {type:String, required:true},
-    email    : {type:String, required:true},
     password : {type:String, required:true}
 })
 
-userSchema.statics.signup = async function(name, email,password) {
-    if (!validator.isEmail(email)){
-        throw Error("Invalid Email!")
-    }
+userSchema.statics.signup = async function(name,password) {
     if (!validator.isStrongPassword(password)){
         throw Error("Password is not strong enough")
     }
-    const exists = await this.findOne({email});
+    const exists = await this.findOne({name:name});
     if (exists){
-        throw Error("Email already exists")
+        throw Error("Username already exists")
     }
     const salt = await bcrypt.genSalt(10);
     const hash = await bcrypt.hash(password, salt);
-    const user = await this.create({name, email, password:hash});
+    const user = await this.create({name, password:hash});
     return user;
 }
 

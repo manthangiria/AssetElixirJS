@@ -19,9 +19,10 @@ export const useSignup = () => {
             setError(json.error);
         }
         if (resp.ok){
-            localStorage.setItem('asstUsr',JSON.stringify(josn));
+            localStorage.setItem('asstUsr',JSON.stringify(json));
             dispatch({type:"LOGIN",payload:json});
             setIsloading(false);
         }
     }
+    return {signup, error, isloading}
 }
