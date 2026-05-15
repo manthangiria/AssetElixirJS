@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Menu, X, ChevronRight, PieChart } from 'lucide-react';
+import { Menu, X, ChevronRight } from 'lucide-react';
 import myLogo from '../assets/AssetElixir.png';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    // { name: 'Services', href: '#services' },
     { name: 'Testimonials', href: '/testimonials' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact Us', href: '/contact-us' },
@@ -16,21 +15,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed w-full z-50 top-0 bg-white/80 backdrop-blur-md border-b border-black ">
+    <nav className="fixed w-full z-50 top-0 bg-white/80 backdrop-blur-md border-b border-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-20 items-center">
+        {/* Height decreased from h-20 to h-16 */}
+        <div className="flex justify-between h-16 items-center">
           
           {/* Logo Section */}
           <Link to='/' className="flex items-center gap-2 flex-shrink-0">
             <div className="p-1.5 rounded-lg">
-              {/* <PieChart className="text-white w-6 h-6" /> */}
-              <img className='h-20' src={myLogo}/>
+              {/* Image height adjusted to h-12 to fit perfectly in the h-16 container */}
+              <img className='h-12 w-auto object-contain' src={myLogo} alt="Asset Elixir" />
             </div>
-            {/* <span className="text-2xl font-bold tracking-tight text-slate-900">
-              <span className='special'>Asset<span className="text-[#fa9632]">Elixir</span></span>
-              <br/>
-              <span className='text-sm'>Financial Solutions</span>
-            </span> */}
           </Link>
 
           {/* Desktop Navigation */}
@@ -39,7 +34,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-m font-medium text-slate-600 hover:text-[#fa9632] transition-colors"
+                className="text-sm font-medium text-slate-600 hover:text-[#fa9632] transition-colors"
               >
                 {link.name}
               </Link>

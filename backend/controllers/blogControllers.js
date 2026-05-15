@@ -20,6 +20,8 @@ const getBlog = async (req,res) => {
 
 const createBlog = async (req,res) => {
     const {blogContent, title, tags} = req.body;
+    console.log(blogContent, title, tags);
+    return;
     try{
         const new_blog = await Note.create({title, blogContent, tags});
         res.status(200).json(new_blog);

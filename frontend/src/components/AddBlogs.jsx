@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ImagePlus, Type, AlignLeft, Send, X, CheckCircle, Eye, Tag } from 'lucide-react';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const AddBlogPost = () => {
   const [title, setTitle] = useState('');
@@ -9,6 +10,8 @@ const AddBlogPost = () => {
   const [imagePreview, setImagePreview] = useState(null);
 
   const [error, setError] = useState(null);
+
+  const {user} = useAuthContext();
 
   const handleBlogSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +24,7 @@ const AddBlogPost = () => {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/`,{
         method:"POST",
         body:formData,
-        headers:"________________________________________JWT________________________________________"
+        headers:{"Authorization":`Bearer ${user.token}`}
       })
       if (!response.ok){
         setError(response.error);
