@@ -20,7 +20,8 @@ const AddBlogPost = () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/`,{
         method:"POST",
-        body:formData
+        body:formData,
+        headers:"________________________________________JWT________________________________________"
       })
       if (!response.ok){
         setError(response.error);
