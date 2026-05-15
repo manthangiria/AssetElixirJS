@@ -1,6 +1,6 @@
 import { useReducer, createContext } from "react";
 
-export const BlogsContext = createContext();
+export const BlogContext = createContext();
 
 export const blogsReducer = (state, action) => {
     switch(action.type){

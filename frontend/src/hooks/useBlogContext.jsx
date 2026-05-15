@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { BlogsContext } from '../context/BlogsContext';
+import { BlogContext } from '../context/BlogContext';
 
 export const useBlogContext = () => {
-    const context = useContext(BlogsContext);
+    const context = useContext(BlogContext);
     if (!context) {
         throw Error("useBlogsContext must be used inside components that have access to BlogsContext!");
     }

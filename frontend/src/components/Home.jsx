@@ -208,7 +208,7 @@ const HomePage = () => {
           <p className="text-sm leading-relaxed text-[#555] max-w-[520px] mb-9">
             The relationships we build are long-term. Our measure of success is simple — whether the people we work with feel more confident, more prepared, and more at ease about the future they are building.
           </p>
-          <div className="grid md:grid-cols-3 gap-3 overflow-hidden">
+          <div className="grid md:grid-cols-3 gap-3">
             <TestiCard 
               quote="As a busy surgeon, financial planning and saving were always at the bottom of my priority list due to time constraints. Although I wanted to save, I could never find the time to organize my finances properly. That all changed when I met Shivam Pathak. Shivam took all my financial worries off my shoulders. He helped me design a financial framework that finally allowed me to manage my finances, pay my bills, handle EMIs, plan savings, and even invest in personal interests—like buying that expensive phone I always wanted! He turned what I could only imagine into a practical reality. I am incredibly grateful to have found such a genuine person. I highly recommend Shivam to anyone looking to grow their wealth in a secure and fulfilling way."
               author="Surgeon"
@@ -280,7 +280,7 @@ const HomePage = () => {
             <div>
               <span className="text-[10px] tracking-[0.15em] uppercase text-slate-800 mb-4 block">Navigate</span>
               <div className="space-y-2.5">
-                <Link to="/about_us"><FooterLink>About Us</FooterLink></Link>
+                <FooterLink children='About Us' link='/about_us'/>
                 <FooterLink>Services</FooterLink>
                 <FooterLink>Financial Insights</FooterLink>
                 <FooterLink>Calculators</FooterLink>
@@ -364,8 +364,8 @@ const ReelCard = ({ tag, title, topic }) => (
 );
 
 const TestiCard = ({ quote, author, detail }) => (
-  <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl p-7 flex flex-col justify-between gap-5 min-h-[220px]">
-    <p className="font-serif text-[17px] italic leading-relaxed text-[#1a1a1a]">"{quote}"</p>
+  <div className=" bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl p-7 flex flex-col justify-between gap-5 min-h-[220px]">
+    <p className="overflow-hidden line-clamp-5 text-overflow:ellipsis font-serif text-[17px] italic leading-relaxed text-[#1a1a1a]">"{quote}"</p>
     <div>
       <p className="text-[12px] font-medium text-[#555]">{author}</p>
       <p className="text-[11px] text-[#999] mt-1">{detail}</p>
@@ -380,10 +380,10 @@ const CTADetail = ({ label, value }) => (
   </div>
 );
 
-const FooterLink = ({ children }) => (
-  <a className="block text-[13px] text-[#555] hover:text-[#1a1a1a] transition-colors cursor-pointer">
+const FooterLink = ({ children, link }) => (
+  <Link to={link} className="block text-[13px] text-[#555] hover:text-[#1a1a1a] transition-colors cursor-pointer">
     {children}
-  </a>
+  </Link>
 );
 
 const SocialBtn = ({ icon }) => (

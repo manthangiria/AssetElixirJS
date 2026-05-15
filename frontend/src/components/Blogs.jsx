@@ -1,9 +1,18 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronDown, Filter } from 'lucide-react';
+import { useBlogContext } from '../hooks/useBlogContext';
 
 const Blog = () => {
   const [sortBy, setSortBy] = useState("newest");
   const [activeFilter, setActiveFilter] = useState("All");
+  
+  const {blogs, all_blogs, dispatch} = useBlogContext();
+
+  useEffect(()=>{
+    const fetchBlogs = async () => {
+      const resp = await fetch('')
+    }
+  })
 
   const allBlogs = [
     {
