@@ -10,7 +10,6 @@ import {
   Phone,
   Mail,
   MapPin,
-
 } from 'lucide-react';
 
 import { FaYoutube } from "react-icons/fa";
@@ -375,7 +374,7 @@ const TestiCard = ({ quote, author, detail }) => (
 
 const CTADetail = ({ label, value }) => (
   <div>
-    <p className="text-[10px] tracking-[0.12em] uppercase text-[#999] mb-1.5">{label}</p>
+    <p className="inline text-[10px] tracking-[0.12em] uppercase text-black bg-[#fa9632] mb-1.5">{label}</p><br/>
     <p className="text-[13px] text-[#555] leading-relaxed">{value}</p>
   </div>
 );

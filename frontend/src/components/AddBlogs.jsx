@@ -2,6 +2,36 @@ import React, { useState } from 'react';
 import { ImagePlus, Type, AlignLeft, Send, X, CheckCircle, Eye, Tag } from 'lucide-react';
 
 const AddBlogPost = () => {
+  const [title, setTitle] = useState('');
+  const [category, setCategory] = useState('');
+  const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  const [error, setError] = useState(null);
+
+  const handleBlogSubmit = async (e) => {
+    e.preventDefault();
+    const new_b = new FormData();
+    new_b.append("title", title);
+    new_b.append("category", category);
+    new_b.append("content", content);
+    new_b.append('image', image);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/`,{
+        method:"POST",
+        body:formData
+      })
+      if (!response.ok){
+        setError(response.error);
+      }
+      const data = await response.json();
+      console.log(data);
+    } catch(error){
+      console.log(error);
+    }
+  }
+
   const [formData, setFormData] = useState({
     title: "",
     category: "Mutual Funds", // Default category
@@ -12,7 +42,7 @@ const AddBlogPost = () => {
   const [submitted, setSubmitted] = useState(false);
 
   // Categories should match the ones in your Blog.jsx filters
-  const categories = ["Mutual Funds", "Retirement", "Tax Planning", "Psychology of Money"];
+  const categories = ["Getting Started", "Financial Planning", "Investments", "Retirement", "Protection", "Tax", "Lessons of Life", "Mistakes to Avoid", "Market Insights"];
 
   const renderPreview = () => {
     return formData.content.split('\n').map((line, index) => {

@@ -8,11 +8,19 @@ const Blog = () => {
   
   const {blogs, all_blogs, dispatch} = useBlogContext();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   useEffect(()=>{
     const fetchBlogs = async () => {
-      const resp = await fetch('')
-    }
-  })
+      const resp = await fetch(`${apiUrl}/api/blogs/`)
+      const json = await resp.json();
+      if (resp.ok) {
+        dispatch({type:"SET_INITIAL_BLOGS", payload:json});
+      }
+      console.log(json)
+    };
+    fetchBlogs();
+  },[])
 
   const allBlogs = [
     {
