@@ -1,6 +1,8 @@
 import { useReducer, createContext } from "react";
 
-export const BlogsContext = (state, action) => {
+export const BlogsContext = createContext();
+
+export const blogsReducer = (state, action) => {
     switch(action.type){
         case "SET_INITIAL_BLOGS":
             return {
@@ -19,5 +21,27 @@ export const BlogsContext = (state, action) => {
                 ...state,
                 blogs : action.payload
             }
+
+        case "RESET_BLOGS":
+            return {
+                ...state,
+                blogs : all_blogs
+            }
+        
+        default:
+            return state;
     }
 }
+
+export const BlogContextProvider = ({children}) => {
+    const [state, dispatch] = useReducer(blogsReducer,{
+        all_blogs:[],
+        blogs:[]
+    })
+
+    return (
+        <BlogContext.Provider value={{...state, dispatch}}>
+            {children}
+        </BlogContext.Provider>
+    )
+};
