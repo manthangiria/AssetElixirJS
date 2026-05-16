@@ -17,8 +17,8 @@ const AddBlogPost = () => {
     e.preventDefault();
     const new_b = new FormData();
     new_b.append("title", title);
-    new_b.append("category", category);
-    new_b.append("content", content);
+    new_b.append("tags", category);
+    new_b.append("blogContent", content);
     new_b.append('image', image);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/`,{
