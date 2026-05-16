@@ -41,7 +41,36 @@ router.get('/',getBlogs);
 router.get('/:id',getBlog);
 router.use(requireAuth);
 router.post('/',(req,res,next)=>{
-    
+    upload.single('blog_pic')(req,res, (err)=>{
+        if (err) {
+            console.log("Multer Error: ",err);
+            return res.status(400).json({error:err.message});
+        }
+        console.log("File Uploaded: ", req.file);
+        console.log("Request Body",)
+        next();
+    })
+},async (req,res) => {
+    try {
+        if (!req.file){
+            return res.status(400).json({error:"No File Uploaded"});
+        }
+        console.log("File recieved: ", req.file.path);
+        const uploadResult = await cloudinary.uploader.upload(req.file.path);
+        fs.unlinkSync(req.file.path);
+        try{
+            user_id = req.user._id;
+            const new_blog = await Blog.create({blogContent, title, tags, blogPic:uploadResult.secure_url, user_id:user_id});
+            console.log(new_blog);
+            res.status(200).json(new_blog)
+        } catch (err) {
+            console.log("An Error Occurred")
+            res.status(404).json({error:`${err.message}`});
+        }
+    } catch (err) {
+        console.log('Upload Error : ', err);
+        res.status(500).json({error:"Upload Failed!"});
+    }
 });
 router.delete('/:id',delBlog);
 router.patch('/:id',patchBlog);
