@@ -10,7 +10,7 @@ export const blogsReducer = (state, action) => {
                 all_blogs: action.payload,
                 blogs    : action.payload
             }
-        case "ADD_BLOG_OPTIMISTIC":
+        case "ADD_BLOG":
             return {
                 ...state, 
                 all_blogs: [action.payload, ...state.all_blogs],

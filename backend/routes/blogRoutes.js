@@ -3,7 +3,9 @@ import express from 'express';
 import { getBlog, getBlogs, createBlog, delBlog, patchBlog } from '../controllers/blogControllers.js';
 
 import requireAuth from '../middleware/requireAuth.js';
-import cloudinary from 'cloudinary';
+import {v2 as cloudinary} from 'cloudinary';
+
+import Blog from '../models/blogModel.js';
 
 import fs from 'fs';
 import multer from 'multer';
@@ -38,8 +40,11 @@ const router = express.Router();
 
 
 router.get('/',getBlogs);
+
 router.get('/:id',getBlog);
+
 router.use(requireAuth);
+
 router.post('/',(req,res,next)=>{
     upload.single('blog_pic')(req,res, (err)=>{
         if (err) {
@@ -59,8 +64,8 @@ router.post('/',(req,res,next)=>{
         const uploadResult = await cloudinary.uploader.upload(req.file.path);
         fs.unlinkSync(req.file.path);
         try{
-            user_id = req.user._id;
-            const new_blog = await Blog.create({blogContent, title, tags, blogPic:uploadResult.secure_url, user_id:user_id});
+            const user_id = req.user._id;
+            const new_blog = await Blog.create({blogContent:req.body.blogContent, title:req.body.title, tags:req.body.tags, blogPic:uploadResult.secure_url});
             console.log(new_blog);
             res.status(200).json(new_blog)
         } catch (err) {
@@ -72,7 +77,9 @@ router.post('/',(req,res,next)=>{
         res.status(500).json({error:"Upload Failed!"});
     }
 });
+
 router.delete('/:id',delBlog);
+
 router.patch('/:id',patchBlog);
 
 export default router;
