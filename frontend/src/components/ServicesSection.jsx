@@ -84,10 +84,10 @@ const ServicesSection = () => {
           {/* Left Side: Header Content */}
           <div className="lg:w-1/3 flex flex-col justify-center">
           {/* border-b-4 border-[#fa9632] */}
-            <h2 className="text-5xl special text-slate-900  w-fit mb-6"> 
+            <h2 className="text-5xl special font-medium text-slate-900  w-fit mb-6"> 
               Services
             </h2>
-            <p className="text-xl text-slate-600 leading-tight">
+            <p className="text-[18px] text-slate-600 leading-tight">
               Helping you with all your life goals, and everything your money touches.
             </p>
           </div>
@@ -99,7 +99,7 @@ const ServicesSection = () => {
                 /* Added 'group' to the wrapper template literal string below */
                 <div 
                   key={index}
-                  className={`${service.color} cursor-pointer bg-[#f8f8f8] border border-[#e0e0e0] hover:border-[#fa9632] min-w-[280px] md:min-w-[300px] p-8 rounded-[2rem] snap-start flex flex-col justify-between h-[400px] group`}
+                  className={`${service.color} cursor-pointer bg-slate-900 border border-[#e0e0e0] hover:border-[#fa9632] min-w-[280px] md:min-w-[300px] p-8 rounded-[2rem] snap-start flex flex-col justify-between h-[400px] group`}
                 >
                   <div>
                     {service.isNew && (
@@ -108,16 +108,17 @@ const ServicesSection = () => {
                       </span>
                     )}
                     
-                    <div className="flex items-center gap-2 mb-6">
-                      {service.icon}
-                      <h3 className="text-2xl font-bold special">{service.title}</h3>
+                    <div className="flex items-center gap-1 mb-6">
+                      {/* {service.icon} */}
+                      {/* <span className="w-5 h-5 text-xl text-[#fa9632] font-bold">{index+1}</n> */}
+                      <h3 className="text-xl text-[#fa9632] font-bold"> {index+1}. {service.title}</h3>
                     </div>
 
                     {/* Added hover transition utility classes to the <ul> element */}
                     <ul className="space-y-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {service.points.map((point, i) => (
-                        <li key={i} className="flex items-start gap-3 text-sm text-slate-600 font-medium opacity-90">
-                          <span className="text-[#fa9632] mt-1">◆</span>
+                        <li key={i} className="flex items-start gap-3 text-sm text-white font-medium opacity-90">
+                          <span className="text-white mt-1">◆</span>
                           {point}
                         </li>
                       ))}

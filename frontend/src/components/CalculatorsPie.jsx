@@ -265,7 +265,7 @@ const Calculators = () => {
 
           {/* Results Summary Section */}
           <div className="bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden sticky top-24">
-            <div className="bg-black p-8 text-center text-white">
+            <div className="bg-slate-900 p-8 text-center text-white">
               <h3 className="font-bold uppercase tracking-widest text-[10px] text-slate-400 mb-2">
                 {activeTab === 'home-loan' ? 'Monthly EMI' : 
                  (activeTab === 'sip-target' && goalMode === 'lumpsum') ? 'Lumpsum Required Today' :

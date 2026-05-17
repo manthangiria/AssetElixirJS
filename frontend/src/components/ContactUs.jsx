@@ -8,33 +8,18 @@ import { FaMapPin } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
 import { MdNavigation } from "react-icons/md";
 import { FaExternalLinkAlt } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 
 const ContactUs = () => {
   const socialLinks = [
-    { icon: <FaXTwitter className="w-5 h-5" />, href: "#", label: "Twitter", color: "hover:text-sky-400" },
-    { icon: <CiMail className="w-5 h-5" />, href: "mailto:shivam@assetelixir.com", label: "Gmail", color: "hover:text-red-500" },
-    { icon: <FaLinkedin className="w-5 h-5" />, href: "#", label: "LinkedIn", color: "hover:text-blue-700" },
-    { icon: <FaYoutube className="w-5 h-5" />, href: "#", label: "YouTube", color: "hover:text-red-600" },
+    { icon: <FaInstagram className="w-8 h-8" />, href: "https://www.instagram.com/assetelixir?igsh=MXNsZWF0aXRqbWdhbQ==", label: "Instagram", color: "hover:text-sky-400" },
+    { icon: <CiMail      className="w-8 h-8" />, href: "mailto:assetelixir@gmail.com", label: "Gmail", color: "hover:text-red-500" },
+    { icon: <FaLinkedin  className="w-8 h-8" />, href: "https://www.linkedin.com/company/asset-elixir/", label: "LinkedIn", color: "hover:text-blue-700" },
+    { icon: <FaYoutube   className="w-8 h-8" />, href: "https://youtube.com/@assetelixir?si=ciYtPPBZrpxdmsk5", label: "YouTube", color: "hover:text-red-600" },
   ];
 
   return (
     <div className="pt-20 min-h-screen">
-      {/* 1. Top Section: Social Connect (Thin Bar) */}
-      <section className="bg-black py-6 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 flex justify-center items-center gap-8 md:gap-12">
-          {socialLinks.map((social, index) => (
-            <a 
-              key={index}
-              href={social.href}
-              className={`text-[#fa9632] transition-all duration-300 transform hover:scale-110 ${social.color}`}
-              aria-label={social.label}
-            >
-              {social.icon}
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* 2. Middle Section: Contact Details (Longer Content) */}
       <section className="py-20 md:py-32">
         <div className="max-w-7xl mx-auto px-4">
@@ -48,38 +33,56 @@ const ContactUs = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Office Location */}
             <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-200 text-center group hover:border-[#fa9632] transition-colors">
-              <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-[#fa9632] transition-all">
+              <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-900 group-hover:text-[#fa9632] transition-all">
                 <FaMapPin className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4 special">Our Office</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Our Office</h3>
               <p className="text-slate-600 leading-relaxed">
-                Kharghar, Navi Mumbai,<br /> 
-                Maharashtra, India
+                B Wing, Arihant Aura, 201, Thane, Belapur Rd,<br/>
+                Turbhe MIDC, Navi Mumbai,<br/>
+                Maharashtra 400703, India
               </p>
             </div>
 
             {/* Phone Number */}
             <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-200 text-center group hover:border-[#fa9632] transition-colors">
-              <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-[#fa9632] transition-all">
+              <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-900 group-hover:text-[#fa9632] transition-all">
                 <FaPhone className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4 special">Phone Number</h3>
-              <p className="text-slate-600 font-medium text-lg">+91 [Insert Number]</p>
-              <p className="text-xs text-slate-400 mt-2">Mon-Fri: 10:00 AM - 6:00 PM</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Phone Number</h3>
+              <p className="text-slate-600 font-medium text-lg">+91 70210 89870</p>
+              <p className="text-s text-slate-600 mt-2">Mon-Fri: 10:00 AM - 6:00 PM</p>
             </div>
 
             {/* Email Address */}
             <div className="bg-white p-10 rounded-3xl shadow-sm border border-slate-200 text-center group hover:border-[#fa9632] transition-colors">
-              <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-[#fa9632] transition-all">
+              <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-900 group-hover:text-[#fa9632] transition-all">
                 <CiMail className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4 special">Email Address</h3>
-              <p className="text-slate-600 font-medium">contact@assetelixir.com</p>
-              <p className="text-slate-600 font-medium">shivam.pathak@cfp.com</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Email Address</h3>
+              <a href="mailto:assetelixir@gmail.com" className="text-slate-600 font-medium">assetelixir@gmail.com</a>
             </div>
           </div>
         </div>
       </section>
+
+      {/* 1. Top Section: Social Connect (Thin Bar) */}
+      <section className="py-6">
+        <div className="max-w-7xl mx-auto px-4 flex justify-center items-center gap-8 md:gap-12">
+          {socialLinks.map((social, index) => (
+            <a 
+              key={index}
+              href={social.href}
+              className={`text-black transition-all duration-300 transform hover:scale-110 ${social.color}`}
+              aria-label={social.label}
+            >
+              {social.icon}
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <br/>
 
       {/* 3. Bottom Section: Google Map */}
       <section className="relative h-[450px] w-full bg-slate-200 overflow-hidden">
@@ -107,14 +110,13 @@ const ContactUs = () => {
         {/* Embedded Iframe */}
         <iframe 
           title="Office Location"
-          src="https://maps.google.com/maps?q=B%20Wing%2C%20Arihant%20Aura%2C%20201%2C%20Thane%20-%20Belapur%20Rd%2C%20Turbhe%20MIDC%2C%20Turbhe%2C%20Navi%20Mumbai%2C%20Maharashtra%20400705%2C%20India&amp;t=m&amp;z=10&amp;output=embed&amp;iwloc=near" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52209.90695639913!2d72.98714875473668!3d19.105291747791025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c17a504b564b%3A0x438266d7caa05a6e!2sAsset%20Elixir%20-%20Financial%20Planner%20in%20Navi%20Mumbai!5e0!3m2!1sen!2sin!4v1779026320061!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
           allowFullScreen="" 
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
-          className="grayscale hover:grayscale-0 transition-all duration-700"
         ></iframe>
       </section>
     </div>

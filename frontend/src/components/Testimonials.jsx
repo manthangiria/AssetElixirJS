@@ -1,8 +1,9 @@
 import React from 'react';
-import { Quote, Star, CheckCircle2, MessageSquare } from 'lucide-react';
+import { Quote, Star, CheckCircle2 } from 'lucide-react';
 
 const Testimonials = () => {
-  const reviews = [
+  // ... (Your existing reviews array)
+ const reviews = [
     {
       id: 1,
       name: "Dr. Firdous Pathan",
@@ -84,57 +85,55 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className="pt-20 min-h-screen">
+    <div className="pt-20 min-h-screen bg-slate-50">
       <section className="py-16 md:py-24">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Header Section */}
           <div className="text-center max-w-3xl mx-auto mb-16">
-            {/* <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#fa9632] text-black border border-black text-sm font-bold mb-4">
-              <MessageSquare className="w-4 h-4" />
-              Client Success Stories
-            </div> */}
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6 special">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-6">
               Trusted by Families & Professionals in Mumbai
             </h2>
             <p className="text-lg text-slate-600">
-              At <span className="font-semibold text-xl text-[#fa9632] special">Asset Elixir</span>, our success is measured by the financial clarity and peace of mind we provide to our clients.
+              At <span className="font-semibold text-xl text-[#fa9632]">Asset Elixir</span>, our success is measured by the financial clarity and peace of mind we provide to our clients.
             </p>
           </div>
 
-          {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {reviews.map((review) => (
               <div 
                 key={review.id} 
-                className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow relative overflow-hidden"
+                // overflow-hidden is key here so the black footer respects the card's rounded corners
+                className="flex flex-col h-full bg-white rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow relative overflow-hidden"
               >
-                {/* Decorative Quote Icon */}
-                <Quote className="absolute -top-2 -right-2 w-16 h-16 text-slate-50 opacity-50" />
-                
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
+                {/* Top Content Area - standard padding */}
+                <div className="p-8 pb-10">
+                  <Quote className="absolute -top-2 -right-2 w-16 h-16 text-slate-100 opacity-50" />
+                  
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+
+                  <p className="text-slate-700 leading-relaxed relative z-10">
+                    "{review.content}"
+                  </p>
                 </div>
 
-                <p className="text-slate-700 leading-relaxed mb-8 relative z-10">
-                  "{review.content}"
-                </p>
-
-                <div className="flex items-center gap-4 border-t border-slate-100 pt-6">
-                  <div className="w-12 h-12 rounded-full bg-[#fa9632] flex items-center justify-center text-white font-bold text-lg">
+                {/* THE FIX: Author Section - Absolute bottom with black background */}
+                <div className="mt-auto bg-slate-900 p-6 flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-[#fa9632] flex items-center justify-center text-black font-bold text-lg shrink-0">
                     {review.name.charAt(0)}
                   </div>
                   <div>
-                    <h4 className="text-slate-900 font-bold flex items-center gap-1">
+                    <h4 className="text-[#fa9632] font-bold flex items-center gap-1">
                       {review.name}
                       <CheckCircle2 className="w-4 h-4 text-[#fa9632]" />
                     </h4>
-                    <p className="text-xs text-slate-500 font-medium">{review.role}</p>
-                    {/* <p className="text-[10px] uppercase tracking-widest mt-1 font-bold">
+                    <p className="text-[13px] text-white font-bold">{review.role}</p>
+                    <p className="text-[13px] text-white uppercase tracking-widest mt-1">
                       {review.location}
-                    </p> */}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -147,7 +146,7 @@ const Testimonials = () => {
             <p className="mb-8 max-w-2xl mx-auto">
               Join dozens of satisfied clients who have secured their financial future through goal-based planning.
             </p>
-            <button className="bg-black text-[#fa9632] px-8 py-4 rounded-xl font-bold hover:bg-slate-50 hover:text-black transition-colors">
+            <button className="bg-slate-900 text-[#fa9632] px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-black transition-colors">
               Book Your Free Consultation
             </button>
           </div>

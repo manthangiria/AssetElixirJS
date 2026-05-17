@@ -1,153 +1,65 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronDown, Filter } from 'lucide-react';
-import { useBlogContext } from '../hooks/useBlogContext';
-import { useAuthContext } from '../hooks/useAuthContext';
+// import { useBlogContext } from '../hooks/useBlogContext';
+// import { useAuthContext } from '../hooks/useAuthContext';
 
 const Blog = () => {
   const [sortBy, setSortBy]             = useState("newest");
   const [activeFilter, setActiveFilter] = useState("All");
   
-  const {blogs:shit, all_blogs, dispatch} = useBlogContext();
-  const {user}                       = useAuthContext();
-
-  const apiUrl = import.meta.env.VITE_API_URL;
-
-  const fetchBlogs = async () => {
-    const resp = await fetch(`${apiUrl}/api/blogs/`)
-    const json = await resp.json();
-    if (resp.ok) {
-      dispatch({type:"SET_INITIAL_BLOGS", payload:json});
-      
-    }
-    console.log(json)
-  };
-
-  useEffect(()=>{    
-    //fetchBlogs();
-  },[dispatch, apiUrl])
-
+  // Logic remains the same...
   const blogs = [
     {
       id: 1,
-      title: "Why Gold isn't Rising During Way - A Shift Most Investors are Missing?",
+      title: "Why Gold isn't Rising During War - A Shift Most Investors are Missing?",
       excerpt: "Why staying disciplined with small monthly investments is the key to creating long-term wealth in the Indian market.",
       category: "Mutual Funds",
-      date: "2025-10-12", // Changed to ISO for easier sorting logic
+      date: "2025-10-12",
       displayDate: "Oct 12, 2025",
       readTime: "5 min read",
-      image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800"
+      blogPic: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800"
     },
     {
-      id: 2,
-      title: "Financial Planner in Seawoods Navi Mumbai - Investment & Wealth Planning Guide",
-      excerpt: "A comprehensive guide on tax-efficient strategies and repatriation rules for NRIs looking to retire in India.",
-      category: "Retirement",
-      date: "2025-11-05",
-      displayDate: "Nov 05, 2025",
-      readTime: "8 min read",
-      image: "https://images.unsplash.com/photo-1536939459926-301728717817?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-      id: 3,
-      title: "Financial Planner in Kharghar Navi Mumbai - Investment & Retirement Planning Guide",
-      excerpt: "Exploring NPS, Health Insurance, and other legal avenues to optimize your tax liability this financial year.",
-      category: "Tax Planning",
-      date: "2025-12-01",
-      displayDate: "Dec 01, 2025",
-      readTime: "6 min read",
-      image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-      id: 4,
-      title: "Financial Planner in CBD Belapur Navi Mumbai - Investment & Retirement Planning Guide",
-      excerpt: "How to tune out daily market fluctuations and focus on your personalized goal-based financial roadmap.",
-      category: "Psychology of Money",
-      date: "2026-01-15",
-      displayDate: "Jan 15, 2026",
-      readTime: "4 min read",
-      image: "https://images.unsplash.com/photo-1611974714652-760056a0ce0f?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-      id:5,
-      title:"Common Investment Mistakes Investors in Navi Mumbai Make (And How to Avoid Them)",
-    },
-    {
-      id:6,
-      title:"Why You need a Certified Financial Planner in Mumbai (Not Just a Mutual Fund Agent) ?"
-    },
-    {
-      id:7,
-      title:"Gold or Silver - Which is Better for Portfolio Stability?"
-    },
-    {
-      id:8,
-      title:"Why Working with a Financial Advisor Brings Clarity, Not Just Returns?"
-    },
-    {
-      id:9,
-      title:"Why you need a Certified Financial Planner in Navi Mumbai?"
-    },
-    {
-      id:10,
-      title:"Best Financial Planner in Mumbai | AssetElixir"
-    },
-    {
-      id:11,
-      title:"Best Financial Planner in Mumbai",
-    },
-    {
-      id:12,
-      title:"The Right Way to Start Your Investment Journey in 2026"
-    },
-    {
-      id:13,
-      title:"Financial Planning Anytime, Anywhere in India"
-    },
-    {
-      id:14,
-      title:"The Day Rohan Realized his SIP was his Best Friend"
-    },
-    {
-      id:15,
-      title:"SIP vs Lump Sum - Which Investment Strategy is Right for you?"
-    }
+        id: 2,
+        title: "Financial Planner in Seawoods Navi Mumbai - Investment & Wealth Planning Guide",
+        excerpt: "A comprehensive guide on tax-efficient strategies and repatriation rules for NRIs looking to retire in India.",
+        category: "Retirement",
+        date: "2025-11-05",
+        displayDate: "Nov 05, 2025",
+        readTime: "8 min read",
+        blogPic: "https://images.unsplash.com/photo-1536939459926-301728717817?auto=format&fit=crop&q=80&w=800"
+      },
+      {
+        id: 3,
+        title: "Financial Planner in Kharghar Navi Mumbai - Investment & Retirement Planning Guide",
+        excerpt: "Exploring NPS, Health Insurance, and other legal avenues to optimize your tax liability this financial year.",
+        category: "Tax Planning",
+        date: "2025-12-01",
+        displayDate: "Dec 01, 2025",
+        readTime: "6 min read",
+        blogPic: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800"
+      }
   ];
 
   const categories = ["All", "Getting Started", "Financial Planning", "Investments", "Retirement", "Protection", "Tax", "Lessons from life", "Mistakes to Avoid","Market Insights"];
 
-  // Functional logic for filtering and sorting
   const processedBlogs = useMemo(() => {
     let filtered = blogs || [];
-    
-    // 1. Filter Logic
     if (activeFilter !== "All") {
       filtered = filtered.filter(blog => blog.category === activeFilter);
     }
-
-    // 2. Sort Logic
     return [...filtered].sort((a, b) => {
       if (sortBy === "newest") return new Date(b.date) - new Date(a.date);
       if (sortBy === "oldest") return new Date(a.date) - new Date(b.date);
       if (sortBy === "alphabetical") return a.title.localeCompare(b.title);
       return 0;
     });
-  }, [blogs,sortBy, activeFilter]);
+  }, [sortBy, activeFilter]);
+
+  const user = null; // Placeholder for your auth logic
 
   return (
     <div className="pt-20 min-h-screen bg-white">
-      {/* Hero Section */}
-      {/* <section className="bg-black py-16 md:py-24 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-6">
-            Knowledge Hub for <span className="text-[#fa9632]">Wealth Creation</span>
-          </h1>
-          <p className="text-slate-300 text-lg max-w-2xl mx-auto">
-            Expert insights on mutual funds, tax planning, and market trends to help you navigate your financial journey with clarity.
-          </p>
-        </div>
-      </section> */}
-
-      {/* Blog Grid & Controls */}
       <section className="py-12">
         <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -190,7 +102,7 @@ const Blog = () => {
             </div>
           </div>
 
-          {/* Grid */}
+          {/* Grid Header */}
           <div className="flex items-center gap-2 mb-8">
             <BookOpen className="text-[#fa9632] w-6 h-6" />
             <h2 className="text-2xl font-bold text-slate-900">
@@ -198,59 +110,65 @@ const Blog = () => {
             </h2>
           </div>
 
+          {/* Blog Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogs? processedBlogs.map((blog) => (
+            {processedBlogs.map((blog) => (
               <article 
-                key={blog._id} 
-                className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300"
+                key={blog.id} 
+                className="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-200 hover:shadow-2xl transition-all duration-500"
               >
-                <div className="relative h-48 overflow-hidden">
+                {/* SECTION 1: Image Area */}
+                <div className="relative h-64 shrink-0 overflow-hidden">
                   <img 
                     src={blog.blogPic} 
-                    alt="Cover Pic Goes Here" 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt={blog.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute top-4 left-4 bg-black text-[#fa9632] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-[#fa9632]">
+                  <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm text-[#fa9632] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-[#fa9632]">
                     {blog.category}
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <div className="flex items-center gap-4 text-slate-400 text-xs mb-4">
-                    <span className="flex items-center gap-1">
+                {/* SECTION 2: Content Area (Black BG, changes to Orange on hover) */}
+                <div className="flex-1 flex flex-col p-8 bg-slate-900 transition-colors duration-300 group-hover:bg-[#fa9632]">
+                  
+                  <div className="flex items-center gap-4 text-slate-400 text-xs mb-4 group-hover:text-black/60 transition-colors">
+                    <span className="flex items-center gap-1 font-bold">
                       <Calendar className="w-3 h-3" /> {blog.displayDate}
                     </span>
-                    <span className="flex items-center gap-1">
+                    <span className="flex items-center gap-1 font-bold">
                       <Clock className="w-3 h-3" /> {blog.readTime}
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#fa9632] transition-colors special">
+                  {/* Title: Orange -> Black */}
+                  <h3 className="text-xl font-bold text-[#fa9632] mb-4 group-hover:text-black transition-colors leading-tight">
                     {blog.title}
                   </h3>
                   
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-2">
+                  {/* Description: White/Bold -> Black/Bold */}
+                  <p className="text-white font-bold text-sm leading-relaxed mb-8 group-hover:text-black transition-colors line-clamp-3">
                     {blog.excerpt}
                   </p>
                   
-                  <button className="flex items-center gap-2 text-black font-black text-sm group-hover:text-[#fa9632] transition-all">
-                    Read Full Article
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
-                  
-                  <div>{
-                    user ? <div>
-                             <br/>
-                             <button className='cursor-pointer'>Delete</button>  |   
-                             <button className='cursor-pointer'>Update</button>
-                            </div> 
-                          : ''
-                  }
+                  {/* Read Full Article: Pinned to bottom */}
+                  <div className="mt-auto">
+                    <button className="flex items-center gap-2 text-slate-300 font-medium text-sm group-hover:text-black group-hover:font-black transition-all">
+                      Read Full Article
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                    </button>
+                    
+                    {user && (
+                      <div className="mt-4 pt-4 border-t border-white/10 group-hover:border-black/10 text-xs text-white group-hover:text-black">
+                        <button className='hover:underline font-bold cursor-pointer'>Delete</button>
+                        <span className="mx-2 opacity-50">|</span>
+                        <button className='hover:underline font-bold cursor-pointer'>Update</button>
+                      </div>
+                    )}
                   </div>
-
                 </div>
               </article>
-            )):'No shit fuck'}
+            ))}
           </div>
         </div>
       </section>

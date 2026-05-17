@@ -39,10 +39,10 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <button className="bg-[#fa9632] hover:bg-slate-900 hover:text-[#fa9632] text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-all flex items-center gap-2">
+            <Link to='https://api.whatsapp.com/send/?phone=7021089870&text&type=phone_number&app_absent=0' className="bg-[#fa9632] hover:bg-slate-900 hover:text-[#fa9632] text-black px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-slate-800 transition-all flex items-center gap-2">
               Schedule a Consultation
               <ChevronRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}

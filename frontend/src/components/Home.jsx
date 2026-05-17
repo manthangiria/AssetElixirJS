@@ -15,11 +15,16 @@ import {
 import { FaYoutube } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { CiMail } from "react-icons/ci";
 
 import EconomicTimes from '../assets/The_Economic_Times_logo.svg.png';
 import ThePrint from '../assets/Mint.png';
 import LinkedIn from '../assets/ETMoney.png';
 import MoneyControl from '../assets/MoneyControl.png';
+// import SidePic from '../assets/igor-omilaev-MaGyGv5PI4g-unsplash.jpg'
+import SidePic from '../assets/BG.png'
+
 import { Link } from 'react-router-dom';
 import ServicesSection from './ServicesSection';
 
@@ -30,10 +35,8 @@ const HomePage = () => {
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
 
         {/* --- HERO SECTION --- */}
-        <section className="py-20 md:py-28">
-          {/* <span className="inline-block text-[11px] tracking-[0.1em] uppercase px-3 py-1.5 border border-[#e0e0e0] rounded-full text-[#555] mb-7">
-            Personal Financial Advisory
-          </span> */}
+        {/* <section className="py-20 md:py-28">
+          
           <h1 className="text-5xl md:text-7xl font-medium leading-[1.06] mb-7 special">
             With You,<br /><em className="italic text-[#555] font-normal special_">Through It All.</em>
           </h1>
@@ -54,12 +57,67 @@ const HomePage = () => {
             <Link to='add_misc'  className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">Add Misc</Link>
             <p className="text-[12px] text-slate-700 mt-5">30 minutes. Completely free. No obligation.</p>
           </div>
+        </section> */}
+        {/* --- HERO SECTION --- */}
+        <section className="py-20 md:py-28 flex flex-col lg:flex-row items-center justify-between gap-12">
+          
+          {/* Left Column: Text Content */}
+          <div className="flex-1">
+            <h1 className="text-5xl md:text-7xl font-medium leading-[1.06] mb-7 special">
+              With You,<br /><em className="italic text-[#555] font-normal special_">Through It All.</em>
+            </h1>
+            <p className="text-base md:text-[16px] leading-relaxed text-slate-700 max-w-[560px] mb-4">
+              Money touches every part of life. Your family. Your peace of mind. Your future. The choices you can make tomorrow.  
+            </p>
+            <p className="text-m md:text-[16px] leading-relaxed text-slate-700 max-w-[540px] mb-4">
+              That is why at Asset Elixir, we do not start with products or returns. We start with you — your life, your responsibilities, and the future you are trying to protect and build.   
+            </p>
+            <p className="text-m md:text-[16px] leading-relaxed text-slate-700 max-w-[540px] mb-9">
+              Because the right financial planner does more than manage money. They help make life feel a little more clear, stable, and taken care of.   
+            </p>
+            <div className="space-y-4">
+              <button className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">
+                Book a Free Consultation
+              </button><br/>
+              <div className="flex flex-wrap gap-4 mt-2">
+                <Link to='add_blogs' className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">Add Blogs</Link>
+                <Link to='add_misc'  className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">Add Misc</Link>
+              </div>
+              <p className="text-[12px] text-slate-700 mt-5">30 minutes. Completely free. No obligation.</p>
+            </div>
+          </div>
+
+          {/* Right Column: Hero Image */}
+          {/* <div className="flex-1 w-full max-w-[700px] lg:max-w-none">
+            <div className="relative group">
+              <div className="absolute -inset-4 bg-[#fa9632]/10 rounded-[2rem] blur-2xl group-hover:bg-[#fa9632]/20 transition-all duration-700"></div>
+              
+              <img 
+                src={SidePic} 
+                alt="Financial Guidance" 
+                className="relative w-[600px] h-[550px] md:h-[550px] object-cover rounded-3xl shadow-2xl border border-slate-100 grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+          </div> */}
+
+          {/* Image hidden on mobile*/}
+          <div className="hidden lg:flex flex-1 w-full lg:max-w-none">
+  <div className="relative group">
+    <div className="absolute -inset-4 bg-[#fa9632]/10 rounded-[2rem] blur-2xl group-hover:bg-[#fa9632]/20 transition-all duration-700"></div>
+    
+    <img 
+      src={SidePic} 
+      alt="Financial Guidance" 
+      className="relative w-full h-[550px] object-cover rounded-3xl shadow-2xl border border-slate-100 grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+    />
+  </div>
+</div>
         </section>
 
         {/* --- MEDIA / FEATURED IN --- */}
         <section className="py-7">
           <div className="flex flex-col sm:flex-row items-stretch rounded-xl overflow-hidden border border-slate-500">
-            <span className="text-[15px] font-bold tracking-[0.12em] uppercase text-black p-4 px-6 bg-[#fa9632] border-b sm:border-b-0  flex items-center shrink-0">
+            <span className="text-[15px] font-bold tracking-[0.12em] uppercase text-black p-4 px-6 bg-[#fa9632] border-b border-black sm:border-b-0  flex items-center shrink-0">
               Featured In
             </span>
             <div className="flex flex-wrap items-center flex-1 bg-white">
@@ -83,11 +141,11 @@ const HomePage = () => {
 
         {/* --- STATS SECTION --- */}
         <section className="py-12">
-          <p className="text-sm leading-relaxed text-[#555] mb-5 max-w-[540px]">
+          <p className="text-m leading-relaxed text-slate-700 mb-5 max-w-[540px]">
             Real relationships. Real results. Trusted by professionals, business owners, and families across India.
           </p>
           {/* bg-[#f8f8f8] |||| bg-[#fa9632]  border border-[#fa9632]*/}
-          <div className="text-xl grid grid-cols-2 md:grid-cols-4 gap-[1px]  rounded-xl overflow-hidden">
+          <div className="text-xl grid grid-cols-2 md:grid-cols-4 gap-[1px] rounded-xl overflow-hidden">
             <StatItem num="1000+" label="Families advised" sub="and counting" />
             <StatItem num="10+" label="Years of experience" sub="in financial planning" />
             <StatItem num="CFP®" label="Certified Financial Planner" sub="India' Gold Standard in Financial Planning" />
@@ -103,10 +161,10 @@ const HomePage = () => {
             <div className="space-y-5">
               <h2 className="special text-5xl font-medium leading-[1.15]">Who We Are.</h2>
               <h2 className="special text-3xl font-medium leading-[1.15]">Financial advice built around your life.</h2>
-              <p className="text-[15px] leading-relaxed text-[#555]">Every person who comes to us brings a different life story — different responsibilities, priorities, goals, and hopes for the future.</p>
-              <p className="text-[15px] leading-relaxed text-[#555]">That is why at Asset Elixir, financial planning does not begin with products or returns. It begins with understanding you first - your life, your family, your concerns, and the future you are trying to build and protect.</p>
-              <p className="text-[15px] leading-relaxed text-[#555]">Because the right financial advice should feel personal, thoughtful, and built around the person behind the decisions.</p>
-              <div className="relative pl-5 py-2 mt-7 bg-black">
+              <p className="text-[15px] leading-relaxed text-slate-700">Every person who comes to us brings a different life story — different responsibilities, priorities, goals, and hopes for the future.</p>
+              <p className="text-[15px] leading-relaxed text-slate-700">That is why at Asset Elixir, financial planning does not begin with products or returns. It begins with understanding you first - your life, your family, your concerns, and the future you are trying to build and protect.</p>
+              <p className="text-[15px] leading-relaxed text-slate-700">Because the right financial advice should feel personal, thoughtful, and built around the person behind the decisions.</p>
+              <div className="relative pl-5 py-2 mt-7 bg-slate-900">
                 <div className="absolute left-0 top-0 bottom-0 w-[5px] bg-[#fa9632]"></div>
                 <p className="special_ text-2xl leading-relaxed text-[#fa9632]">
                   “The best financial advice begins with understanding the person, not the portfolio.”  
@@ -131,11 +189,11 @@ const HomePage = () => {
           <span className="text-[10px] tracking-[0.15em] uppercase text-black mb-4 block">Our Purpose</span>
           <h2 className="special text-5xl font-medium mb-6">What we believe.</h2>
           <div className="space-y-4">
-            <p className="text-[15px] leading-relaxed text-[#555]">
-              <strong className="text-[#1a1a1a] font-medium">Vision:</strong> To help people build financial lives that reflect who they are and what they care about.
+            <p className="text-[15px] leading-relaxed text-slate-700">
+              <strong className="text-black font-medium">Vision :</strong> To help people build financial lives that reflect who they are and what they care about.
             </p>
-            <p className="text-[15px] leading-relaxed text-[#555]">
-              <strong className="text-[#1a1a1a] font-medium">Mission:</strong> We listen first, understand deeply, and advise honestly. Our job is to make financial planning feel less like a burden and more like clarity — so you can move forward with confidence in the decisions that matter.
+            <p className="text-[15px] leading-relaxed text-slate-700">
+              <strong className="text-black font-medium">Mission :</strong> We listen first, understand deeply, and advise honestly. Our job is to make financial planning feel less like a burden and more like clarity — so you can move forward with confidence in the decisions that matter.
             </p>
           </div>
         </section>
@@ -148,7 +206,7 @@ const HomePage = () => {
             <span className="text-[10px] tracking-[0.15em] uppercase text-black mb-4 block">What We Offer</span>
             <h2 className="special text-5xl font-medium leading-[1.15]">Planning for every part of your life.</h2>
           </div>
-          <p className="text-sm leading-relaxed text-[#555] max-w-[560px] mb-9">
+          <p className="text-m leading-relaxed text-slate-700 max-w-[560px] mb-9">
               Financial decisions are connected to every part of life — your family, your responsibilities, your future, and the goals you are working hard to achieve. That is why our approach to financial planning is personal, thoughtful, and built around what truly matters to you.
           </p>
           <div className="grid md:grid-cols-3 gap-3 text-xl">
@@ -186,7 +244,7 @@ const HomePage = () => {
               Follow on Instagram
             </button>
           </div>
-          <p className="text-sm leading-relaxed text-[#555] max-w-[500px] mb-9">
+          <p className="text-m leading-relaxed text-slate-700 max-w-[500px] mb-9">
             Thoughtful perspectives on money, markets, planning, and the decisions that shape long-term financial well-being.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -207,7 +265,7 @@ const HomePage = () => {
         <section className="py-12">
           <span className="text-[10px] tracking-[0.15em] uppercase text-black mb-4 block">What Clients Say</span>
           <h2 className="special text-5xl font-medium mb-4">People we have had the privilege of working with.</h2>
-          <p className="text-sm leading-relaxed text-[#555] max-w-[520px] mb-9">
+          <p className="text-m leading-relaxed text-slate-700 max-w-[520px] mb-9">
             The relationships we build are long-term. Our measure of success is simple — whether the people we work with feel more confident, more prepared, and more at ease about the future they are building.
           </p>
           <div className="grid md:grid-cols-3 gap-3">
@@ -234,14 +292,14 @@ const HomePage = () => {
 
         {/* --- CTA SECTION --- */}
         <section className="py-12 pb-4">
-          <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl p-10 md:p-14">
+          <div className="bg-white border border-black hover:border-[#fa9632] rounded-xl p-10 md:p-14">
             <div className="grid lg:grid-cols-2 gap-10 items-start mb-10">
               <div className="space-y-4">
                 <h2 className="special text-4xl font-medium leading-[1.15]">Ready to find your<br /><em className="special_ text-[#555] font-normal">financial elixir?</em></h2>
-                <p className="text-sm leading-relaxed text-[#555] max-w-[480px]">
+                <p className="text-m leading-relaxed text-slate-700 max-w-[480px]">
                   Wherever you are in life, a thoughtful conversation about your goals, your responsibilities, and the future you want to build is always a good place to start. We would love to be part of that journey with you.
                 </p>
-                <p className='text-sm leading-relaxed text-[#555] max-w-[480px]'>
+                <p className='text-m leading-relaxed text-slate-700 max-w-[480px]'>
                   If you are looking for guidance that feels personal, honest, and built around your life, we would be glad to connect.
                 </p>
               </div>
@@ -252,7 +310,7 @@ const HomePage = () => {
                 
               </div>
             </div>
-            <div className="grid md:grid-cols-3 gap-3 pt-9 border-t border-[#e0e0e0]">
+            <div className="grid md:grid-cols-3 gap-3 pt-9 border-t border-black">
               <CTADetail label="A simple first step." value="A 30-minute introductory conversation to understand where you stand today and where you want to go next." />
               <CTADetail label="What to Expect" value="We listen first, understand your situation, and share how we can help" />
               <CTADetail label="Who It's For" value="Anyone ready to take their financial future seriously" />
@@ -272,9 +330,10 @@ const HomePage = () => {
               </p>
               <div className="flex gap-2.5 mt-7">
                 {/* <SocialBtn icon={<Linkedin />} /> */}
-                <SocialBtn icon={<FaInstagram />} />
-                <SocialBtn icon={<FaFacebook />} />
-                <SocialBtn icon={<FaYoutube />} />
+                <SocialBtn icon={<CiMail/>} link='mailto:assetelixir@gmail.com'/>
+                <SocialBtn icon={<FaInstagram />} link='https://www.instagram.com/assetelixir?igsh=MXNsZWF0aXRqbWdhbQ==' />
+                <SocialBtn icon={<FaLinkedin />} link='https://www.linkedin.com/company/asset-elixir/'/>
+                <SocialBtn icon={<FaYoutube />} link='https://youtube.com/@assetelixir?si=ciYtPPBZrpxdmsk5'/>
               </div>
             </div>
 
@@ -285,9 +344,9 @@ const HomePage = () => {
                 <FooterLink children='About Us' link='/about_us'/>
                 <FooterLink>Services</FooterLink>
                 <FooterLink>Financial Insights</FooterLink>
-                <FooterLink>Calculators</FooterLink>
-                <FooterLink>Free Portfolio Review</FooterLink>
-                <FooterLink>Book a Free Call</FooterLink>
+                <FooterLink children ='Calculators' link='/calculators'/>
+                <FooterLink children='Free Portfolio Review' link='https://api.whatsapp.com/send/?phone=7021089870&text&type=phone_number&app_absent=0'/>
+                <FooterLink children='Book a Free Call' link='https://api.whatsapp.com/send/?phone=7021089870&text&type=phone_number&app_absent=0'/>          
               </div>
             </div>
 
@@ -306,9 +365,9 @@ const HomePage = () => {
             {/* Contact */}
             <div className="space-y-5">
               <span className="text-[10px] tracking-[0.15em] uppercase text-slate-800 block">Contact Us</span>
-              <ContactRow icon={<Phone />} label="Phone" value="+91 98XXX XXXXX" />
-              <ContactRow icon={<Mail />} label="Email" value="hello@assetelixir.com" />
-              <ContactRow icon={<MapPin />} label="Office" value="123, Your Building Name, Mumbai – 400 0XX" />
+              <ContactRow icon={<Phone />} label="Phone" value="+91 70210 89870" />
+              <ContactRow icon={<Mail />} label="Email" value="assetelixir@gmail.com" />
+              <ContactRow icon={<MapPin />} label="Office" value="B Wing, Arihant Aura, 201, Thane – Belapur Rd, Turbhe MIDC, Turbhe, Navi Mumbai, Maharashtra 400703" />
             </div>
           </div>
 
@@ -332,24 +391,27 @@ const HomePage = () => {
 /* --- SUB-COMPONENTS --- */
 
 const StatItem = ({ num, label, sub }) => (
-  <div className="bg-black p-7">
-    <p className="font-serif text-[44px] text-[#fa9632] font-medium leading-none mb-2">{num}</p>
+  <div className="bg-slate-900 p-7">
+    <p className="font-serif text-[35px] text-[#fa9632] font-medium leading-none mb-2">{num}</p>
     <p className="text-[15px] text-white font-bold leading-relaxed">{label}</p>
     <p className="text-[13px] text-white mt-1">{sub}</p>
   </div>
 );
 
 const ServiceCard = ({ num, title, outcome, desc }) => (
-  <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl p-7 hover:border-[#fa9632] transition-colors group">
-    <p className="font-serif text-[17px] text-[#999] mb-4">{num}</p>
-    <p className="text-[16px] font-medium mb-2.5">{title}</p>
-    <p className="font-serif text-[15px] italic text-[#1a1a1a] leading-relaxed mb-2.5">{outcome}</p>
-    <p className="text-[15px] text-[#555] leading-relaxed">{desc}</p>
+  // bg-[#f8f8f8]
+  //text-[#999]
+  //text-[#1a1a1a]
+  <div className="bg-slate-900 border border-[#e0e0e0] rounded-xl p-7 hover:border-[#fa9632] transition-colors group">
+    <p className="font-serif text-[17px] text-white mb-4">{num}</p>
+    <p className="text-[17px] font-bold text-[#fa9632] mb-2.5">{title}</p>
+    <p className="font-serif text-[17px] italic font-bold text-white leading-relaxed mb-2.5">{outcome}</p>
+    <p className="text-[15px] text-white leading-relaxed">{desc}</p>
   </div>
 );
 
 const ReelCard = ({ tag, title, topic }) => (
-  <div className="rounded-xl border border-[#e0e0e0] overflow-hidden bg-[#f8f8f8] flex flex-col">
+  <div className="rounded-xl border border-[#e0e0e0] overflow-hidden bg-[#fa9632] flex flex-col">
     <div className="h-44 bg-slate-100 flex items-center justify-center relative">
       <span className="absolute top-3 left-3 bg-white border border-[#e0e0e0] rounded px-2 py-1 text-[10px] uppercase font-bold text-[#999]">
         {tag}
@@ -358,27 +420,27 @@ const ReelCard = ({ tag, title, topic }) => (
         <Play className="fill-[#1a1a1a] text-[#1a1a1a] ml-0.5" size={14} />
       </div>
     </div>
-    <div className="p-4 bg-white grow">
-      <p className="text-[12px] font-medium leading-relaxed text-[#1a1a1a] mb-1">{title}</p>
-      <p className="text-[11px] text-[#999]">{topic}</p>
+    <div className="p-4 bg-slate-900 grow">
+      <p className="text-[15px] font-bold leading-relaxed text-[#fa9632] mb-1">{title}</p>
+      <p className="text-[13px] text-white">{topic}</p>
     </div>
   </div>
 );
 
 const TestiCard = ({ quote, author, detail }) => (
-  <div className=" bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl p-7 flex flex-col justify-between gap-5 min-h-[220px]">
-    <p className="overflow-hidden line-clamp-5 text-overflow:ellipsis font-serif text-[17px] italic leading-relaxed text-[#1a1a1a]">"{quote}"</p>
+  <div className=" bg-slate-900 border border-[#e0e0e0] rounded-xl p-7 flex flex-col justify-between gap-5 min-h-[220px]">
+    <p className="overflow-hidden line-clamp-5 text-overflow:ellipsis text-[17px] leading-relaxed text-white">"{quote}"</p>
     <div>
-      <p className="text-[12px] font-medium text-[#555]">{author}</p>
-      <p className="text-[11px] text-[#999] mt-1">{detail}</p>
+      <p className="text-[15px] font-bold text-[#fa9632]">{author}</p>
+      <p className="text-[13px] text-white mt-1">{detail}</p>
     </div>
   </div>
 );
 
 const CTADetail = ({ label, value }) => (
   <div>
-    <p className="inline text-[10px] tracking-[0.12em] uppercase text-black bg-[#fa9632] mb-1.5">{label}</p><br/>
-    <p className="text-[13px] text-[#555] leading-relaxed">{value}</p>
+    <p className="inline text-[13px] tracking-[0.12em] uppercase text-black bg-[#fa9632] mb-1.5">{label}</p><br/>
+    <p className="text-[15px] text-slate-700 leading-relaxed">{value}</p>
   </div>
 );
 
@@ -388,10 +450,10 @@ const FooterLink = ({ children, link }) => (
   </Link>
 );
 
-const SocialBtn = ({ icon }) => (
-  <button className="w-8 h-8 rounded-full border border-black flex items-center justify-center text-[#555] hover:border-[#1a1a1a] hover:bg-[#f8f8f8] transition-all">
+const SocialBtn = ({ icon, link }) => (
+  <Link to={link} className="w-8 h-8 rounded-full border border-black flex items-center justify-center text-[#555] hover:border-[#1a1a1a] hover:bg-[#f8f8f8] transition-all">
     {React.cloneElement(icon, { size: 14 })}
-  </button>
+  </Link>
 );
 
 const ContactRow = ({ icon, label, value }) => (
