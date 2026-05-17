@@ -1,28 +1,32 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronDown, Filter } from 'lucide-react';
 import { useBlogContext } from '../hooks/useBlogContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Blog = () => {
-  const [sortBy, setSortBy] = useState("newest");
+  const [sortBy, setSortBy]             = useState("newest");
   const [activeFilter, setActiveFilter] = useState("All");
   
-  const {blogs, all_blogs, dispatch} = useBlogContext();
+  const {blogs:shit, all_blogs, dispatch} = useBlogContext();
+  const {user}                       = useAuthContext();
 
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  useEffect(()=>{
-    const fetchBlogs = async () => {
-      const resp = await fetch(`${apiUrl}/api/blogs/`)
-      const json = await resp.json();
-      if (resp.ok) {
-        dispatch({type:"SET_INITIAL_BLOGS", payload:json});
-      }
-      console.log(json)
-    };
-    fetchBlogs();
-  },[])
+  const fetchBlogs = async () => {
+    const resp = await fetch(`${apiUrl}/api/blogs/`)
+    const json = await resp.json();
+    if (resp.ok) {
+      dispatch({type:"SET_INITIAL_BLOGS", payload:json});
+      
+    }
+    console.log(json)
+  };
 
-  const allBlogs = [
+  useEffect(()=>{    
+    //fetchBlogs();
+  },[dispatch, apiUrl])
+
+  const blogs = [
     {
       id: 1,
       title: "Why Gold isn't Rising During Way - A Shift Most Investors are Missing?",
@@ -113,11 +117,11 @@ const Blog = () => {
 
   // Functional logic for filtering and sorting
   const processedBlogs = useMemo(() => {
-    let filtered = allBlogs;
+    let filtered = blogs || [];
     
     // 1. Filter Logic
     if (activeFilter !== "All") {
-      filtered = allBlogs.filter(blog => blog.category === activeFilter);
+      filtered = filtered.filter(blog => blog.category === activeFilter);
     }
 
     // 2. Sort Logic
@@ -127,7 +131,7 @@ const Blog = () => {
       if (sortBy === "alphabetical") return a.title.localeCompare(b.title);
       return 0;
     });
-  }, [sortBy, activeFilter]);
+  }, [blogs,sortBy, activeFilter]);
 
   return (
     <div className="pt-20 min-h-screen bg-white">
@@ -145,7 +149,7 @@ const Blog = () => {
 
       {/* Blog Grid & Controls */}
       <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Controls Bar */}
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-slate-100 pb-8">
@@ -195,15 +199,15 @@ const Blog = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {processedBlogs.map((blog) => (
+            {blogs? processedBlogs.map((blog) => (
               <article 
-                key={blog.id} 
+                key={blog._id} 
                 className="group bg-white rounded-2xl overflow-hidden border border-slate-200 hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img 
-                    src={blog.image} 
-                    alt={blog.title} 
+                    src={blog.blogPic} 
+                    alt="Cover Pic Goes Here" 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 bg-black text-[#fa9632] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-[#fa9632]">
@@ -233,9 +237,20 @@ const Blog = () => {
                     Read Full Article
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
+                  
+                  <div>{
+                    user ? <div>
+                             <br/>
+                             <button className='cursor-pointer'>Delete</button>  |   
+                             <button className='cursor-pointer'>Update</button>
+                            </div> 
+                          : ''
+                  }
+                  </div>
+
                 </div>
               </article>
-            ))}
+            )):'No shit fuck'}
           </div>
         </div>
       </section>

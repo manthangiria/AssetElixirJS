@@ -78,12 +78,13 @@ const ServicesSection = () => {
 
   return (
     <section className="py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row gap-12">
+      <div className="max-w-[1650px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row gap-5">
           
           {/* Left Side: Header Content */}
           <div className="lg:w-1/3 flex flex-col justify-center">
-            <h2 className="text-5xl special text-slate-900 border-b-4 border-[#fa9632] w-fit mb-6">
+          {/* border-b-4 border-[#fa9632] */}
+            <h2 className="text-5xl special text-slate-900  w-fit mb-6"> 
               Services
             </h2>
             <p className="text-xl text-slate-600 leading-tight">
@@ -95,9 +96,10 @@ const ServicesSection = () => {
           <div className="lg:w-2/3">
             <div className="flex gap-4 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
               {services.map((service, index) => (
+                /* Added 'group' to the wrapper template literal string below */
                 <div 
                   key={index}
-                  className={`${service.color} bg-[#f8f8f8] border border-[#e0e0e0] hover:border-[#fa9632] min-w-[300px] md:min-w-[350px] p-8 rounded-[2rem] snap-start flex flex-col justify-between h-[500px] `}
+                  className={`${service.color} cursor-pointer bg-[#f8f8f8] border border-[#e0e0e0] hover:border-[#fa9632] min-w-[280px] md:min-w-[300px] p-8 rounded-[2rem] snap-start flex flex-col justify-between h-[400px] group`}
                 >
                   <div>
                     {service.isNew && (
@@ -111,7 +113,8 @@ const ServicesSection = () => {
                       <h3 className="text-2xl font-bold special">{service.title}</h3>
                     </div>
 
-                    <ul className="space-y-4">
+                    {/* Added hover transition utility classes to the <ul> element */}
+                    <ul className="space-y-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       {service.points.map((point, i) => (
                         <li key={i} className="flex items-start gap-3 text-sm text-slate-600 font-medium opacity-90">
                           <span className="text-[#fa9632] mt-1">◆</span>

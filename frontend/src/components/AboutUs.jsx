@@ -16,7 +16,7 @@ const AboutUs = () => {
     <div className="bg-white text-[#1a1a1a] selection:bg-[#fa9632] selection:text-black">
       
       {/* --- HERO: THE STORY BEHIND THE NAME --- */}
-      <section className="max-w-[900px] mx-auto px-4 pt-32 pb-20">
+      <section className="max-w-[1600px] mx-auto px-4 pt-32 pb-20">
         <span className="inline-block text-[10px] tracking-[0.15em] uppercase text-slate-800 mb-6 block">About Asset Elixir</span>
         <h1 className="special text-5xl md:text-7xl font-medium leading-[1.1] mb-10">
           We don't begin with your portfolio.<br />
@@ -74,7 +74,7 @@ const AboutUs = () => {
 
       {/* --- THE FOUNDER'S MESSAGE --- */}
       <section className="py-24 bg-[#f8f8f8] border-y border-[#e0e0e0]">
-        <div className="max-w-[900px] mx-auto px-4">
+        <div className="max-w-[1600px] mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-16">
             <div className="w-full md:w-1/2">
               <div className="relative">
@@ -82,7 +82,7 @@ const AboutUs = () => {
                 <img 
                   src={shivam} 
                   alt="Shivam Pathak" 
-                  className="relative z-10 rounded-2xl transition-all duration-500 w-full object-cover aspect-[4/5]"
+                  className="relative z-10 rounded-2xl transition-all duration-500 w-100 h-100 object-contain aspect-[4/5]"
                 />
               </div>
             </div>
@@ -109,7 +109,7 @@ const AboutUs = () => {
       </section>
 
       {/* --- CORE VALUES: WHAT WE STAND FOR --- */}
-      <section className="max-w-[900px] mx-auto px-4 py-24">
+      <section className="max-w-[1600px] mx-auto px-4 py-24">
         <span className="text-[10px] tracking-[0.15em] uppercase text-[#999] mb-12 block text-center">What We Stand For</span>
         <div className="grid md:grid-cols-2 gap-4">
           <ValueCard 
@@ -135,7 +135,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <section className="max-w-[900px] mx-auto px-4 py-24 text-center">
+      <section className="max-w-[1600px] mx-auto px-4 py-24 text-center">
         
         <p className="text-slate-800 special_ mb-10 max-w-[500px] mx-auto text-4xl leading-relaxed">
           "Earn with ethics. Grow with discipline. Build with purpose."

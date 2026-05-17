@@ -24,7 +24,8 @@ body{
     min-height: 100vh;
   
   /* Create your specific linear gradient */
-  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 75%, #fa9632 100%);
+  /* background: linear-gradient(to bottom, #ffffff 0%, #ffffff 75%, #fa9632 100%); */
+  background-color: white;
   
   /* Prevent the background from repeating */
   background-repeat: no-repeat;

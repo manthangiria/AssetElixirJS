@@ -48,13 +48,13 @@ const AddBlogPost = () => {
       const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs`,{
         method:"POST",
         body:formData,
-        header:{"Authorization":`Bearer ${user.token}`}
+        headers:{"Authorization":`Bearer ${user.token}`}
       })
 
-      const json = await response.json();
+      const json = await resp.json();
 
       if (!resp.ok){
-        setError(json.error || "Something went wrong")
+        setError(json.error || "Something went wrong");
       } else {
         dispatch({type:"ADD_BLOG",payload:json});
         navigate('/',{replace:true});
@@ -73,16 +73,71 @@ const AddBlogPost = () => {
   // Categories should match the ones in your Blog.jsx filters
   const categories = ["Getting Started", "Financial Planning", "Investments", "Retirement", "Protection", "Tax", "Lessons of Life", "Mistakes to Avoid", "Market Insights"];
 
+  // Helper to turn text inside curly braces {...} into bold elements
+  const parseInlineElements = (text) => {
+    if (!text) return "";
+    
+    // Splits the text by curly braces, keeping the inside content
+    const parts = text.split(/\{([^}]+)\}/g);
+    
+    return parts.map((part, i) => {
+      // Every odd index is a match inside the curly braces
+      if (i % 2 === 1) {
+        return (
+          <strong key={i} className="font-black text-slate-900 mx-0.5">
+            {part}
+          </strong>
+        );
+      }
+      return part;
+    });
+  };
+
   const renderPreview = () => {
+    if (!content) return null;
+
     return content.split('\n').map((line, index) => {
-      if (line.startsWith('#')) {
+      const trimmedLine = line.trim();
+
+      // 1. Check for Sub-sub-heading (##)
+      if (trimmedLine.startsWith('##')) {
+        const cleanText = trimmedLine.replace('##', '').trim();
+        return (
+          <h2 key={index} className="text-xl font-bold text-slate-800 mt-5 mb-3 tracking-tight">
+            {parseInlineElements(cleanText)}
+          </h2>
+        );
+      }
+      
+      // 2. Check for Sub-heading (#)
+      if (trimmedLine.startsWith('#')) {
+        const cleanText = trimmedLine.replace('#', '').trim();
         return (
           <h1 key={index} className="text-3xl font-black text-[#fa9632] mt-6 mb-4 tracking-tight">
-            {line.replace('#', '').trim()}
+            {parseInlineElements(cleanText)}
           </h1>
         );
       }
-      return <p key={index} className="text-slate-600 leading-relaxed mb-4">{line}</p>;
+
+      // 3. Check for Unordered List Item ([...])
+      if (trimmedLine.startsWith('[')) {
+        // Strip the wrapping square brackets if both exist, or just the opening one
+        const cleanText = trimmedLine.replace(/^\[|\]$/g, '').trim();
+        return (
+          <div key={index} className="flex items-start gap-3 text-slate-600 leading-relaxed mb-2 pl-4">
+            {/* Custom dot bullet point matching your brand color */}
+            <span className="text-[#fa9632] font-black text-lg leading-none select-none">•</span>
+            <span className="flex-1">{parseInlineElements(cleanText)}</span>
+          </div>
+        );
+      }
+
+      // 4. Default Paragraph Text
+      return (
+        <p key={index} className="text-slate-600 leading-relaxed mb-4">
+          {parseInlineElements(line)}
+        </p>
+      );
     });
   };
 

@@ -26,7 +26,8 @@ import ServicesSection from './ServicesSection';
 const HomePage = () => {
   return (
     <div className="text-[#1a1a1a] selection:bg-[#fa9632] selection:text-black">
-      <div className="max-w-[900px] mx-auto px-4 sm:px-6">
+      {/* Changed max-w-[900px] to max-w-[1200px] to widen the layout */}
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6">
 
         {/* --- HERO SECTION --- */}
         <section className="py-20 md:py-28">
@@ -46,19 +47,19 @@ const HomePage = () => {
             Because the right financial planner does more than manage money. They help make life feel a little more clear, stable, and taken care of.   
           </p>
           <div className="space-y-4">
-            <button className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-medium text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">
+            <button className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">
               Book a Free Consultation
             </button><br/>
-            <Link to='add_blogs' className='border border-black bg-yellow-500'>Add Blogs</Link><br/>
-            <Link to='add_misc'  className='border border-black bg-yellow-500'>Add Misc</Link>
-            <p className="text-[12px] text-slate-700">30 minutes. Completely free. No obligation.</p>
+            <Link to='add_blogs' className="mr-5 bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">Add Blogs</Link>
+            <Link to='add_misc'  className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all shadow-lg shadow-orange-100">Add Misc</Link>
+            <p className="text-[12px] text-slate-700 mt-5">30 minutes. Completely free. No obligation.</p>
           </div>
         </section>
 
         {/* --- MEDIA / FEATURED IN --- */}
         <section className="py-7">
-          <div className="flex flex-col sm:flex-row items-stretch rounded-xl overflow-hidden">
-            <span className="text-[10px] tracking-[0.12em] uppercase text-['black'] p-4 px-6 bg-[#f8f8f8] border-b sm:border-b-0  flex items-center shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch rounded-xl overflow-hidden border border-slate-500">
+            <span className="text-[15px] font-bold tracking-[0.12em] uppercase text-black p-4 px-6 bg-[#fa9632] border-b sm:border-b-0  flex items-center shrink-0">
               Featured In
             </span>
             <div className="flex flex-wrap items-center flex-1 bg-white">
@@ -68,7 +69,7 @@ const HomePage = () => {
                 { name: "LinkedIn", src: LinkedIn },
                 { name: "Moneycontrol", src: MoneyControl }
               ].map((pub) => (
-                <div key={pub.name} className="flex-1 min-w-[180px] p-4 flex items-center justify-center  transition-all duration-300 border-r border-[#e0e0e0] last:border-r-0">
+                <div key={pub.name} className="flex-1 min-w-[180px] p-4 flex items-center justify-center  transition-all duration-300 border-r border-black last:border-r-0">
                   <img 
                     src={pub.src} 
                     alt={pub.name} 
@@ -85,7 +86,8 @@ const HomePage = () => {
           <p className="text-sm leading-relaxed text-[#555] mb-5 max-w-[540px]">
             Real relationships. Real results. Trusted by professionals, business owners, and families across India.
           </p>
-          <div className="text-xl grid grid-cols-2 md:grid-cols-4 gap-[1px] bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl overflow-hidden">
+          {/* bg-[#f8f8f8] |||| bg-[#fa9632]  border border-[#fa9632]*/}
+          <div className="text-xl grid grid-cols-2 md:grid-cols-4 gap-[1px]  rounded-xl overflow-hidden">
             <StatItem num="1000+" label="Families advised" sub="and counting" />
             <StatItem num="10+" label="Years of experience" sub="in financial planning" />
             <StatItem num="CFP®" label="Certified Financial Planner" sub="India' Gold Standard in Financial Planning" />
@@ -93,7 +95,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        <hr className="border-t-[0.5px] border-black my-12" />
+        <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         {/* --- WHO WE ARE / HOW WE WORK --- */}
         <section className="py-12">
@@ -104,12 +106,12 @@ const HomePage = () => {
               <p className="text-[15px] leading-relaxed text-[#555]">Every person who comes to us brings a different life story — different responsibilities, priorities, goals, and hopes for the future.</p>
               <p className="text-[15px] leading-relaxed text-[#555]">That is why at Asset Elixir, financial planning does not begin with products or returns. It begins with understanding you first - your life, your family, your concerns, and the future you are trying to build and protect.</p>
               <p className="text-[15px] leading-relaxed text-[#555]">Because the right financial advice should feel personal, thoughtful, and built around the person behind the decisions.</p>
-              <div className="relative pl-5 py-2 mt-7">
-                <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-[#fa9632]"></div>
-                <p className="special_ text-2xl leading-relaxed text-[#1a1a1a]">
+              <div className="relative pl-5 py-2 mt-7 bg-black">
+                <div className="absolute left-0 top-0 bottom-0 w-[5px] bg-[#fa9632]"></div>
+                <p className="special_ text-2xl leading-relaxed text-[#fa9632]">
                   “The best financial advice begins with understanding the person, not the portfolio.”  
                 </p>
-                <p className="text-m text-slate-700 mt-2.5">— Shivam Pathak, CFP® · Founder, Asset Elixir</p>
+                <p className="text-m text-white mt-2.5">— Shivam Pathak, CFP® · Founder, Asset Elixir</p>
               </div>
             </div>
             <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl h-[400px] flex flex-col items-center justify-center p-8 text-center space-y-4">
@@ -121,23 +123,24 @@ const HomePage = () => {
           </div>
         </section>
 
-        <hr className="border-t-[0.5px] border-black my-12" />
+        <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         {/* --- PURPOSE SECTION --- */}
-        <section className="py-12 max-w-[640px]">
+        {/* Adjusted max-w to map smoothly to the wider screen footprint */}
+        <section className="py-12 max-w-[850px]">
           <span className="text-[10px] tracking-[0.15em] uppercase text-black mb-4 block">Our Purpose</span>
           <h2 className="special text-5xl font-medium mb-6">What we believe.</h2>
           <div className="space-y-4">
-            <p className="text-sm leading-relaxed text-[#555]">
+            <p className="text-[15px] leading-relaxed text-[#555]">
               <strong className="text-[#1a1a1a] font-medium">Vision:</strong> To help people build financial lives that reflect who they are and what they care about.
             </p>
-            <p className="text-sm leading-relaxed text-[#555]">
+            <p className="text-[15px] leading-relaxed text-[#555]">
               <strong className="text-[#1a1a1a] font-medium">Mission:</strong> We listen first, understand deeply, and advise honestly. Our job is to make financial planning feel less like a burden and more like clarity — so you can move forward with confidence in the decisions that matter.
             </p>
           </div>
         </section>
 
-        <hr className="border-t-[0.5px] border-black my-12" />
+        <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         {/* --- SERVICES SECTION --- */}
         <section className="py-12">
@@ -170,7 +173,7 @@ const HomePage = () => {
           </div>
         </section>
 
-        <hr className="border-t-[0.5px] border-black my-12" />
+        <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         {/* --- INSIGHTS SECTION --- */}
         <section className="py-12">
@@ -194,11 +197,11 @@ const HomePage = () => {
           </div>
         </section>
 
-        <hr className="border-t-[0.5px] border-black my-12" />
+        <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         <ServicesSection/>
 
-       <hr className="border-t-[0.5px] border-black my-12" />
+       <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         {/* --- TESTIMONIALS SECTION --- */}
         <section className="py-12">
@@ -227,7 +230,7 @@ const HomePage = () => {
           <Link to='/testimonials' className="text-[12px] text-slate-700 cursor-pointer underline mt-7 hover:text-[#1a1a1a]">Read more stories</Link>
         </section>
 
-        <hr className="border-t-[0.5px] border-black my-12" />
+        <hr className="border-t-[0.5px] border-slate-400 my-12" />
 
         {/* --- CTA SECTION --- */}
         <section className="py-12 pb-4">
@@ -243,7 +246,7 @@ const HomePage = () => {
                 </p>
               </div>
               <div className="lg:text-right">
-                <button className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-medium text-[13px] hover:bg-black hover:text-[#fa9632] transition-all">
+                <button className="bg-[#fa9632] text-black px-8 py-3.5 rounded-lg font-bold text-[13px] hover:bg-black hover:text-[#fa9632] transition-all">
                   Book a Free Consultation
                 </button>
                 
@@ -329,19 +332,19 @@ const HomePage = () => {
 /* --- SUB-COMPONENTS --- */
 
 const StatItem = ({ num, label, sub }) => (
-  <div className="bg-[#f8f8f8] p-7">
-    <p className="font-serif text-[44px] font-medium leading-none mb-2">{num}</p>
-    <p className="text-[12px] text-[#555] leading-relaxed">{label}</p>
-    <p className="text-[11px] text-[#999] mt-1">{sub}</p>
+  <div className="bg-black p-7">
+    <p className="font-serif text-[44px] text-[#fa9632] font-medium leading-none mb-2">{num}</p>
+    <p className="text-[15px] text-white font-bold leading-relaxed">{label}</p>
+    <p className="text-[13px] text-white mt-1">{sub}</p>
   </div>
 );
 
 const ServiceCard = ({ num, title, outcome, desc }) => (
   <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl p-7 hover:border-[#fa9632] transition-colors group">
-    <p className="font-serif text-[13px] text-[#999] mb-4">{num}</p>
-    <p className="text-[14px] font-medium mb-2.5">{title}</p>
-    <p className="font-serif text-[13px] italic text-[#1a1a1a] leading-relaxed mb-2.5">{outcome}</p>
-    <p className="text-[12px] text-[#555] leading-relaxed">{desc}</p>
+    <p className="font-serif text-[17px] text-[#999] mb-4">{num}</p>
+    <p className="text-[16px] font-medium mb-2.5">{title}</p>
+    <p className="font-serif text-[15px] italic text-[#1a1a1a] leading-relaxed mb-2.5">{outcome}</p>
+    <p className="text-[15px] text-[#555] leading-relaxed">{desc}</p>
   </div>
 );
 
