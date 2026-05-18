@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronDown, Filter } from 'lucide-react';
 import { useBlogContext } from '../hooks/useBlogContext';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Blog = () => {
   const [sortBy, setSortBy]             = useState("newest");
@@ -11,6 +12,7 @@ const Blog = () => {
   const {user}                          = useAuthContext();
 
   const apiUrl                          = import.meta.env.VITE_API_URL;
+  const navigate                        = useNavigate();
 
   const fetchBlogs = async () => {
     const resp = await fetch(`${apiUrl}/api/blogs`);
@@ -18,7 +20,6 @@ const Blog = () => {
     if (resp.ok){
       dispatch({type:"SET_INITIAL_BLOGS",payload:json});
     }
-    console.log(json);
   }
 
   useEffect(()=>{
@@ -30,7 +31,7 @@ const Blog = () => {
   const processedBlogs = useMemo(() => {
     let filtered = blogs || [];
     if (activeFilter !== "All") {
-      filtered = filtered.filter(blog => blog.category === activeFilter);
+      filtered = filtered.filter(blog => blog.tags === activeFilter);
     }
     return [...filtered].sort((a, b) => {
       if (sortBy === "newest") return new Date(b.date) - new Date(a.date);
@@ -97,7 +98,7 @@ const Blog = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {processedBlogs && processedBlogs.map((blog) => (
               <article 
-                key={blog.id} 
+                key={blog._id} 
                 className="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-200 hover:shadow-2xl transition-all duration-500"
               >
                 {/* SECTION 1: Image Area */}
@@ -136,7 +137,7 @@ const Blog = () => {
                   
                   {/* Read Full Article: Pinned to bottom */}
                   <div className="mt-auto">
-                    <button className="flex items-center gap-2 text-slate-300 font-medium text-sm group-hover:text-black group-hover:font-black transition-all">
+                    <button onClick={()=>navigate(`/blogs/${blog._id}`)} className="cursor-pointer flex items-center gap-2 text-slate-300 font-medium text-sm group-hover:text-black group-hover:font-black transition-all">
                       Read Full Article
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                     </button>

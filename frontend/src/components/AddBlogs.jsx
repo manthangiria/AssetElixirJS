@@ -61,7 +61,7 @@ const AddBlogPost = () => {
       } else {
         dispatch({type:"ADD_BLOG",payload:json});
         setSubmitted(true);
-        navigate('/',{replace:true});
+        // navigate('/',{replace:true});
       }
     } catch (err) {
       console.error("Submission Error: ",err);

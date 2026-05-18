@@ -19,8 +19,6 @@ const DedicatedBlog = () => {
       try {
         const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
           method: "GET",
-          // Include authorization headers if your backend protects read routes, otherwise this can be omitted
-          headers: user ? { "Authorization": `Bearer ${user.token}` } : {}
         });
 
         const json = await resp.json();

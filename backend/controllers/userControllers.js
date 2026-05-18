@@ -7,6 +7,7 @@ const createToken = (id) => {
 
 const loginUser = async (req,res) => {
     const {name,password} = req.body;
+    // console.log(req.body);
     try {
         const user  = await User.login(name,password);
         const token = createToken(user._id);
@@ -24,6 +25,8 @@ const signupUser = async (req,res) => {
     //const x = await User.find()
     //console.log(x)
     //return;
+    //console.log(name, password);
+    
     try {
         const user  = await User.signup(name,password);
         const token = createToken(user._id);

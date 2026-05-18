@@ -14,6 +14,8 @@ import Misc from './components/Misc'
 import AboutUs from './components/AboutUs'
 import Admin from './components/Admin'
 import { useAuthContext } from './hooks/useAuthContext'
+import DedicatedBlog from './components/DedicatedBlogs'
+import SavingCalculator from './components/SavingsCalculator'
 
 
 function App() {
@@ -26,8 +28,10 @@ function App() {
           <Route exact path='/' element={<Home/>}/>
           <Route exact path='/testimonials' element={<Testimonials/>}/>
           <Route exact path='/blog' element={<Blog/>}/>
+          <Route exact path='/blogs/:id' element={<DedicatedBlog/>}/>
           <Route exact path='/contact-us' element={<ContactUs/>}/> 
           <Route exact path='/calculators' element={<Calculators/>}/>
+          <Route exact path='/savings' element={<SavingCalculator/>}/>
           {/* Only shown when user is logged in */}
           <Route exact path='/add_blogs' element={user ? <AddBlogPost/> : <Navigate to='/'/>}/>
           <Route exact path='/add_misc' element={user ? <Misc/> : <Navigate to='/'/>}/>

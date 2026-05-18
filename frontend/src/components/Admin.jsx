@@ -14,8 +14,8 @@ const Admin = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  //const {login, error, isloading} = useLogin();
-  const {signup, error, isloading} = useSignup();
+  const {login:signup, error, isloading} = useLogin();
+  // const {signup, error, isloading} = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
