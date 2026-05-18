@@ -52,7 +52,6 @@ router.post('/',(req,res,next)=>{
             return res.status(400).json({error:err.message});
         }
         console.log("File Uploaded: ", req.file);
-        console.log("Request Body",)
         next();
     })
 },async (req,res) => {
@@ -62,6 +61,7 @@ router.post('/',(req,res,next)=>{
         }
         console.log("File recieved: ", req.file.path);
         const uploadResult = await cloudinary.uploader.upload(req.file.path);
+        console.log(uploadResult)
         fs.unlinkSync(req.file.path);
         try{
             const user_id = req.user._id;

@@ -24,6 +24,7 @@ import LinkedIn from '../assets/ETMoney.png';
 import MoneyControl from '../assets/MoneyControl.png';
 // import SidePic from '../assets/igor-omilaev-MaGyGv5PI4g-unsplash.jpg'
 import SidePic from '../assets/BG.png'
+import WhoWeAre from '../assets/scott-graham-5fNmWej4tAA-unsplash.jpg'
 
 import { Link } from 'react-router-dom';
 import ServicesSection from './ServicesSection';
@@ -108,7 +109,7 @@ const HomePage = () => {
     <img 
       src={SidePic} 
       alt="Financial Guidance" 
-      className="relative w-full h-[550px] object-cover rounded-3xl shadow-2xl border border-slate-100 grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+      className="relative w-full h-[550px] object-cover rounded-3xl shadow-2xl border border-slate-100"
     />
   </div>
 </div>
@@ -172,12 +173,11 @@ const HomePage = () => {
                 <p className="text-m text-white mt-2.5">— Shivam Pathak, CFP® · Founder, Asset Elixir</p>
               </div>
             </div>
-            <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl h-[400px] flex flex-col items-center justify-center p-8 text-center space-y-4">
-              <p className="text-sm text-[#999] leading-relaxed italic">
+            {/* <div className="bg-[#f8f8f8] border border-[#e0e0e0] rounded-xl h-[400px] flex flex-col items-center justify-center p-8 text-center space-y-4"> */}
+              <img className="relative w-full h-[550px] object-cover rounded-3xl shadow-2xl border border-slate-100" src={WhoWeAre}/>
                 {/* Your relationship with your financial advisor should feel like having a trusted friend who knows your life and cares about your future. */}
-                No Image for Now
-              </p>
-            </div>
+                {/* No Image for Now */}
+            {/* </div> */}
           </div>
         </section>
 
