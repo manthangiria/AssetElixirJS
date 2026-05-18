@@ -1,45 +1,29 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { Calendar, Clock, ArrowRight, BookOpen, ChevronDown, Filter } from 'lucide-react';
-// import { useBlogContext } from '../hooks/useBlogContext';
-// import { useAuthContext } from '../hooks/useAuthContext';
+import { useBlogContext } from '../hooks/useBlogContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Blog = () => {
   const [sortBy, setSortBy]             = useState("newest");
   const [activeFilter, setActiveFilter] = useState("All");
-  
-  // Logic remains the same...
-  const blogs = [
-    {
-      id: 1,
-      title: "Why Gold isn't Rising During War - A Shift Most Investors are Missing?",
-      excerpt: "Why staying disciplined with small monthly investments is the key to creating long-term wealth in the Indian market.",
-      category: "Mutual Funds",
-      date: "2025-10-12",
-      displayDate: "Oct 12, 2025",
-      readTime: "5 min read",
-      blogPic: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&q=80&w=800"
-    },
-    {
-        id: 2,
-        title: "Financial Planner in Seawoods Navi Mumbai - Investment & Wealth Planning Guide",
-        excerpt: "A comprehensive guide on tax-efficient strategies and repatriation rules for NRIs looking to retire in India.",
-        category: "Retirement",
-        date: "2025-11-05",
-        displayDate: "Nov 05, 2025",
-        readTime: "8 min read",
-        blogPic: "https://images.unsplash.com/photo-1536939459926-301728717817?auto=format&fit=crop&q=80&w=800"
-      },
-      {
-        id: 3,
-        title: "Financial Planner in Kharghar Navi Mumbai - Investment & Retirement Planning Guide",
-        excerpt: "Exploring NPS, Health Insurance, and other legal avenues to optimize your tax liability this financial year.",
-        category: "Tax Planning",
-        date: "2025-12-01",
-        displayDate: "Dec 01, 2025",
-        readTime: "6 min read",
-        blogPic: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=800"
-      }
-  ];
+
+  const {blogs, all_blogs, dispatch}    = useBlogContext();
+  const {user}                          = useAuthContext();
+
+  const apiUrl                          = import.meta.env.VITE_API_URL;
+
+  const fetchBlogs = async () => {
+    const resp = await fetch(`${apiUrl}/api/blogs`);
+    const json = await resp.json();
+    if (resp.ok){
+      dispatch({type:"SET_INITIAL_BLOGS",payload:json});
+    }
+    console.log(json);
+  }
+
+  useEffect(()=>{
+    fetchBlogs();
+  },[user, dispatch, apiUrl])
 
   const categories = ["All", "Getting Started", "Financial Planning", "Investments", "Retirement", "Protection", "Tax", "Lessons from life", "Mistakes to Avoid","Market Insights"];
 
@@ -54,10 +38,9 @@ const Blog = () => {
       if (sortBy === "alphabetical") return a.title.localeCompare(b.title);
       return 0;
     });
-  }, [sortBy, activeFilter]);
+  }, [blogs, sortBy, activeFilter]);
 
-  const user = null; // Placeholder for your auth logic
-
+  
   return (
     <div className="pt-20 min-h-screen bg-white">
       <section className="py-12">
@@ -70,7 +53,7 @@ const Blog = () => {
                 <Filter className="w-4 h-4" />
                 <span className="text-sm font-bold uppercase tracking-wider">Filters:</span>
               </div>
-              {categories.map((cat) => (
+              {categories?.map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setActiveFilter(cat)}
@@ -112,7 +95,7 @@ const Blog = () => {
 
           {/* Blog Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {processedBlogs.map((blog) => (
+            {processedBlogs && processedBlogs.map((blog) => (
               <article 
                 key={blog.id} 
                 className="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-200 hover:shadow-2xl transition-all duration-500"
@@ -125,7 +108,7 @@ const Blog = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute top-4 left-4 bg-black/80 backdrop-blur-sm text-[#fa9632] text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full border border-[#fa9632]">
-                    {blog.category}
+                    {blog.tags}
                   </div>
                 </div>
                 
@@ -148,7 +131,7 @@ const Blog = () => {
                   
                   {/* Description: White/Bold -> Black/Bold */}
                   <p className="text-white font-bold text-sm leading-relaxed mb-8 group-hover:text-black transition-colors line-clamp-3">
-                    {blog.excerpt}
+                    {blog.blogContent}
                   </p>
                   
                   {/* Read Full Article: Pinned to bottom */}

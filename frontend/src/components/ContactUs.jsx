@@ -36,11 +36,17 @@ const ContactUs = () => {
               <div className="w-14 h-14 bg-[#fa9632] rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-slate-900 group-hover:text-[#fa9632] transition-all">
                 <FaMapPin className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Our Office</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-4">Our Offices</h3>
               <p className="text-slate-600 leading-relaxed">
                 B Wing, Arihant Aura, 201, Thane, Belapur Rd,<br/>
                 Turbhe MIDC, Navi Mumbai,<br/>
                 Maharashtra 400703, India
+              </p>
+              <hr className='mb-3 mt-2'/>
+              <p className='text-slate-600 leading-relaxed'>
+                 F Wing, Shri Siddhivinayak SRA Building, 101, Station Rd,<br/>
+                 Lokamanya Nagar, Gandhi Nagar, Vikhroli West,<br/>
+                 Mumbai, Maharashtra 400083<br/>
               </p>
             </div>
 
@@ -92,10 +98,7 @@ const ContactUs = () => {
             <div className="bg-[#fa9632] p-2 rounded-lg">
               <MdNavigation className="w-5 h-5" />
             </div>
-            <div>
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-tighter">Locate us</p>
-              <p className="text-sm font-bold text-slate-900">Kharghar, Navi Mumbai</p>
-            </div>
+            
             <a 
               href="https://www.google.com/maps" 
               target="_blank" 
@@ -110,7 +113,8 @@ const ContactUs = () => {
         {/* Embedded Iframe */}
         <iframe 
           title="Office Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52209.90695639913!2d72.98714875473668!3d19.105291747791025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c17a504b564b%3A0x438266d7caa05a6e!2sAsset%20Elixir%20-%20Financial%20Planner%20in%20Navi%20Mumbai!5e0!3m2!1sen!2sin!4v1779026320061!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+          // src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52209.90695639913!2d72.98714875473668!3d19.105291747791025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c17a504b564b%3A0x438266d7caa05a6e!2sAsset%20Elixir%20-%20Financial%20Planner%20in%20Navi%20Mumbai!5e0!3m2!1sen!2sin!4v1779026320061!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+          src="https://www.google.com/maps/d/u/0/embed?mid=1ruEXEjnAqxUwPf-menZ9qL2QNndecr8&ehbc=2E312F&noprof=1" width="640" height="480"
           width="100%" 
           height="100%" 
           style={{ border: 0 }} 
