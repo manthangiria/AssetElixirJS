@@ -61,15 +61,12 @@ router.post('/',(req,res,next)=>{
         }
         console.log("File recieved: ", req.file.path);
         const uploadResult = await cloudinary.uploader.upload(req.file.path);
-        console.log(uploadResult)
         fs.unlinkSync(req.file.path);
         try{
             const user_id = req.user._id;
             const new_blog = await Blog.create({blogContent:req.body.blogContent, title:req.body.title, tags:req.body.tags, blogPic:uploadResult.secure_url});
-            console.log(new_blog);
             res.status(200).json(new_blog)
         } catch (err) {
-            console.log("An Error Occurred")
             res.status(404).json({error:`${err.message}`});
         }
     } catch (err) {

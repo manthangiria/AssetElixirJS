@@ -15,7 +15,7 @@ const Blog = () => {
   const navigate                        = useNavigate();
 
   const fetchBlogs = async () => {
-    const resp = await fetch(`${apiUrl}/api/blogs`);
+    const resp = await fetch(`${apiUrl}/api/blogs/`);
     const json = await resp.json();
     if (resp.ok){
       dispatch({type:"SET_INITIAL_BLOGS",payload:json});
@@ -26,10 +26,27 @@ const Blog = () => {
     fetchBlogs();
   },[user, dispatch, apiUrl])
 
+  const handleDelete = async (x) => {
+    try {
+      const resp = await fetch(`${apiUrl}/api/blogs/${x}`,{
+        method:"DELETE",
+        headers:{"Authorization":`Bearer ${user.token}`}
+      })
+      const json = await resp.json();
+      if (!resp.ok){
+        alert(`Something Went Wrong : ${json.error}`);
+      } else {
+        dispatch({type:"DELETE_BLOG", payload:json._id})
+      }
+    } catch (err) {
+      alert(`Can't Delete: ${err}`);
+    }
+  }
+
   const categories = ["All", "Getting Started", "Financial Planning", "Investments", "Retirement", "Protection", "Tax", "Lessons from life", "Mistakes to Avoid","Market Insights"];
 
   const processedBlogs = useMemo(() => {
-    let filtered = blogs || [];
+    let filtered = all_blogs || [];
     if (activeFilter !== "All") {
       filtered = filtered.filter(blog => blog.tags === activeFilter);
     }
@@ -39,7 +56,7 @@ const Blog = () => {
       if (sortBy === "alphabetical") return a.title.localeCompare(b.title);
       return 0;
     });
-  }, [blogs, sortBy, activeFilter]);
+  }, [all_blogs, sortBy, activeFilter]);
 
   
   return (
@@ -144,7 +161,7 @@ const Blog = () => {
                     
                     {user && (
                       <div className="mt-4 pt-4 border-t border-white/10 group-hover:border-black/10 text-xs text-white group-hover:text-black">
-                        <button className='hover:underline font-bold cursor-pointer'>Delete</button>
+                        <button onClick={()=>handleDelete(blog._id)} className='hover:underline font-bold cursor-pointer'>Delete</button>
                         <span className="mx-2 opacity-50">|</span>
                         <button className='hover:underline font-bold cursor-pointer'>Update</button>
                       </div>

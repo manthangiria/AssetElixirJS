@@ -27,7 +27,15 @@ export const blogsReducer = (state, action) => {
                 ...state,
                 blogs : all_blogs
             }
-        
+
+        case "DELETE_BLOG":
+            return {
+                ...state,
+                // Filters out the deleted blog by its id from both arrays
+                all_blogs: state.all_blogs.filter(blog => blog.id !== action.payload),
+                blogs    : state.blogs.filter(blog => blog.id !== action.payload)
+            }
+
         default:
             return state;
     }
