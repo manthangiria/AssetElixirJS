@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useAuthContext } from "./useAuthContext";
 
-const apiUrl = import.meta.env.VITE_API_URL;
+
 
 export const useLogin = () => {
     const [error, setError] = useState(null);
     const [isloading, setIsloading] = useState(null);
     const {dispatch} = useAuthContext();
+
+    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
 
     const login = async (username,password) => {
         // const {username, password} = formData;

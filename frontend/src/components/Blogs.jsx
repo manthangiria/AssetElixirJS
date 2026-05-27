@@ -11,7 +11,8 @@ const Blog = () => {
   const {blogs, all_blogs, dispatch}    = useBlogContext();
   const {user}                          = useAuthContext();
 
-  const apiUrl                          = import.meta.env.VITE_API_URL;
+  const apiUrl                          = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const navigate                        = useNavigate();
 
   const fetchBlogs = async () => {

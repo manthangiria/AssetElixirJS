@@ -23,6 +23,8 @@ const AddBlogPost = () => {
   const {blogs, all_blogs, dispatch}    = useBlogContext();
   const navigate                        = useNavigate();
 
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:4000";
+
   const handleBlogSubmit = async (e) => {
     e.preventDefault();
 
@@ -48,7 +50,7 @@ const AddBlogPost = () => {
       formData.append("blogContent", content); // Saves raw formatting syntax to the DB safely
       if (image) formData.append('blog_pic', image);
       
-      const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs`,{
+      const resp = await fetch(`${apiUrl}/api/blogs`,{
         method:"POST",
         body:formData,
         headers:{"Authorization":`Bearer ${user.token}`}
