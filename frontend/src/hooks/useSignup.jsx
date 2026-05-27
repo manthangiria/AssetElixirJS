@@ -13,7 +13,7 @@ export const useSignup = () => {
     const signup = async (name, password) => {
         setIsloading(true);
         setError(null);
-        const resp = await fetch(`${apiUrl}/api/users/signup`,{
+        const resp = await fetch(`/api/users/signup`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({name, password})

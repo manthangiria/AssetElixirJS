@@ -14,7 +14,7 @@ export const useLogin = () => {
         // const {username, password} = formData;
         setIsloading(true);
         setError(null);
-        const resp = await fetch(`${apiUrl}/api/users/login`,{
+        const resp = await fetch(`/api/users/login`,{
             method:'POST',
             headers: {"Content-Type":'application/json'},
             body:JSON.stringify({name:username,password:password})

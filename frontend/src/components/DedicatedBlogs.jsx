@@ -19,7 +19,7 @@ const DedicatedBlog = () => {
       setLoading(true);
       setError(null);
       try {
-        const resp = await fetch(`${import.meta.env.VITE_API_URL}/api/blogs/${id}`, {
+        const resp = await fetch(`/api/blogs/${id}`, {
           method: "GET",
         });
 

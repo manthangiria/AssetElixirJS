@@ -16,7 +16,7 @@ const Blog = () => {
   const navigate                        = useNavigate();
 
   const fetchBlogs = async () => {
-    const resp = await fetch(`${apiUrl}/api/blogs/`);
+    const resp = await fetch(`/api/blogs/`);
     const json = await resp.json();
     if (resp.ok){
       dispatch({type:"SET_INITIAL_BLOGS",payload:json});
@@ -29,7 +29,7 @@ const Blog = () => {
 
   const handleDelete = async (x) => {
     try {
-      const resp = await fetch(`${apiUrl}/api/blogs/${x}`,{
+      const resp = await fetch(`/api/blogs/${x}`,{
         method:"DELETE",
         headers:{"Authorization":`Bearer ${user.token}`}
       })

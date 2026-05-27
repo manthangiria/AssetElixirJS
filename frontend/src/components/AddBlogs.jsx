@@ -50,7 +50,7 @@ const AddBlogPost = () => {
       formData.append("blogContent", content); // Saves raw formatting syntax to the DB safely
       if (image) formData.append('blog_pic', image);
       
-      const resp = await fetch(`${apiUrl}/api/blogs`,{
+      const resp = await fetch(`/api/blogs`,{
         method:"POST",
         body:formData,
         headers:{"Authorization":`Bearer ${user.token}`}
